@@ -324,5 +324,9 @@
       send('visit');var fired50=false;window.addEventListener('scroll',function(){if(fired50)return;var sc=(window.scrollY+window.innerHeight)/Math.max(document.body.scrollHeight,1)*100;if(sc>=50){fired50=true;send('scroll',{scroll_pct:50});}},{passive:true});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a){send('click_call');}});var t0=performance.now();window.addEventListener('pagehide',function(){send('visit',{duration_ms:Math.round(performance.now()-t0)});});
     })();
   </script>
+  <!-- Modern Analytics, Chat, and Contact Form Scripts -->
+  <script src="/analytics.js" defer></script>
+  <script src="/paint-guru.js" defer></script>
+  <script src="/api/contact-form.js" defer></script>
 </body>
 </html>

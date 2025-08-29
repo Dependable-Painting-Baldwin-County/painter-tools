@@ -376,40 +376,16 @@
       });
     });
 
-    // --- Analytics Tracking ---
-    (function () {
-      var sid = localStorage.getItem('dp_sid');
-      if (!sid) { sid = 's_' + Math.random().toString(36).slice(2, 10); localStorage.setItem('dp_sid', sid); }
-      var PAGE = location.pathname || '/';
-      var SVC = 'other'; // It's a general contact form
-
-      function send(type, extra) {
-        var U = new URLSearchParams(location.search);
-        var utm = {
-          source: sessionStorage.getItem('utm_source') || U.get('utm_source') || '',
-          medium: sessionStorage.getItem('utm_medium') || U.get('utm_medium') || '',
-          campaign: sessionStorage.getItem('utm_campaign') || U.get('utm_campaign') || ''
-        };
-        var gclid = sessionStorage.getItem('gclid') || U.get('gclid') || '';
-        if (utm.source) sessionStorage.setItem('utm_source', utm.source);
-        if (utm.medium) sessionStorage.setItem('utm_medium', utm.medium);
-        if (utm.campaign) sessionStorage.setItem('utm_campaign', utm.campaign);
-        if (gclid) sessionStorage.setItem('gclid', gclid);
-        var payload = Object.assign({ type, page: PAGE, service: SVC, session: sid, utm, gclid }, extra || {});
-        var body = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        navigator.sendBeacon('/api/track', body) || fetch('/api/track', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) });
-      }
-      window.dpSend = send;
-      send('visit');
-
-      let started = false;
-      document.getElementById('contact-form')?.addEventListener('focusin', () => {
-        if (!started) {
-          started = true;
-          send('form_start');
-        }
-      }, { once: true });
-    })();
+  </script>
+  <!-- Analytics tracking -->
+  <script src="/analytics.js"></script>
+  <!-- Paint Guru chat (optional, for future chat UI) -->
+  <script src="/paint-guru.js"></script>
+  <!-- Contact form handler -->
+  <script src="/api/contact-form.js"></script>
+  <script>
+    submitContactForm('#contact-form');
+    // Paint Guru chat can be used via window.paintGuru.send(message)
   </script>
 </body>
 

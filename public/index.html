@@ -1304,55 +1304,14 @@
         yearSpan.textContent = new Date().getFullYear();
       }
     });
-
-    // --- Analytics Tracking ---
-    (function () {
-      var sid = localStorage.getItem('dp_sid');
-      if (!sid) { sid = 's_' + Math.random().toString(36).slice(2, 10); localStorage.setItem('dp_sid', sid); }
-      var PAGE = location.pathname || '/';
-      var SVC = (p => {
-        p = (p || '').toLowerCase();
-        if (p.includes('exterior')) return 'exterior';
-        if (p.includes('interior')) return 'interior';
-        if (p.includes('cabinet')) return 'cabinets';
-        if (p.includes('commercial')) return 'commercial';
-        return 'other';
-      })(PAGE);
-
-      function send(type, extra) {
-        var U = new URLSearchParams(location.search);
-        var utm = {
-          source: sessionStorage.getItem('utm_source') || U.get('utm_source') || '',
-          medium: sessionStorage.getItem('utm_medium') || U.get('utm_medium') || '',
-          campaign: sessionStorage.getItem('utm_campaign') || U.get('utm_campaign') || ''
-        };
-        var gclid = sessionStorage.getItem('gclid') || U.get('gclid') || '';
-        if (utm.source) sessionStorage.setItem('utm_source', utm.source);
-        if (utm.medium) sessionStorage.setItem('utm_medium', utm.medium);
-        if (utm.campaign) sessionStorage.setItem('utm_campaign', utm.campaign);
-        if (gclid) sessionStorage.setItem('gclid', gclid);
-        var payload = Object.assign({ type: type, page: PAGE, service: SVC, session: sid, utm: utm, gclid: gclid }, extra || {});
-        var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        if (!navigator.sendBeacon || !navigator.sendBeacon('/api/track', blob)) {
-          fetch('/api/track', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => { });
-        }
-      }
-      send('visit');
-      var fired50 = false;
-      window.addEventListener('scroll', function () {
-        if (fired50) return;
-        var sc = (window.scrollY + window.innerHeight) / Math.max(document.body.scrollHeight, 1) * 100;
-        if (sc >= 50) { fired50 = true; send('scroll', { scroll_pct: 50 }); }
-      }, { passive: true });
-      document.addEventListener('click', function (e) {
-        var a = e.target.closest && e.target.closest('a[href^="tel:"]');
-        if (a) { send('click_call'); }
-      });
-      var t0 = performance.now();
-      window.addEventListener('pagehide', function () {
-        send('visit', { duration_ms: Math.round(performance.now() - t0) });
-      });
-    })();
+  </script>
+  <script src="/analytics.js"></script>
+  <script src="/paint-guru.js"></script>
+  <script src="/api/contact-form.js"></script>
+  <script>
+    // If you add a contact form to this page, enable the handler:
+    // submitContactForm('#contact-form');
+    // Paint Guru chat can be used via window.paintGuru.send(message)
   </script>
 </body>
 

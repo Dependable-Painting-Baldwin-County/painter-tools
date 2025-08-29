@@ -1,32 +1,22 @@
 {
 	"name": "painter-tools",
-	"version": "0.0.0",
 	"private": true,
-	"description": "",
-	"homepage": "https://github.com/Dependable-Painting-Baldwin-County/painter-tools#readme",
-	"bugs": {
-		"url": "https://github.com/Dependable-Painting-Baldwin-County/painter-tools/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Dependable-Painting-Baldwin-County/painter-tools.git"
-	},
-	"license": "ISC",
-	"author": "Alex Dimmler",
-	"type": "commonjs",
-	"main": "vitest.config.js",
-	"directories": {
-		"test": "test"
-	},
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
-		"test": "vitest"
-	},
-	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.8.19",
-		"vitest": "~3.2.0",
-		"wrangler": "^4.33.1"
-	}
+  "scripts": {
+    "start": "wrangler dev",
+    "dev": "wrangler dev",
+    "dev:port": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev --remote",
+    "types": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "hono": "^4.9.4",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240821.0",
+    "javascript": "^5.5.4",
+    "wrangler": "^4.33.1"
+  }
 }
+

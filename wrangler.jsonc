@@ -1,21 +1,46 @@
-{
-	"name": "painter-tools",
+	{
+		"name": "painter-tools",
 	"main": "src/index.js",
 	"compatibility_date": "2025-08-29",
-	"compatibility_flags": [
-		"nodejs_compat",
-		"global_fetch_strictly_public"
-	],
 	"assets": {
 		"directory": "./public"
 	},
+		"routes": [
+			{ "pattern": "dependablepainting.work", "custom_domain": true }
+		],
 	"observability": {
 		"enabled": true
 	},
-	"bindings": {
-		"ai": {
-			"binding": "AI"
-		},
-		"placement": { "mode": "smart" }
-	}   
+	"d1_databases": [
+		{ "binding": "DB", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76" },
+		{ "binding": "DB_2", "database_id": "419dd6ec-30a5-4b12-a895-65ab985aaf2f" }
+	],
+	"analytics_engine_datasets": [
+		{ "binding": "ANALYTICS_EVENTS", "dataset": "analytics_events" }
+	],
+	"queues": {
+		"producers": [
+			{ "binding": "GA4_QUEUE", "queue": "painter-analytics-forward-ga4" },
+			{ "binding": "INGEST_QUEUE", "queue": "painter-analytics-ingest" },
+			{ "binding": "CHAT_QUEUE", "queue": "painter-chat-log-interaction" },
+			{ "binding": "GEO_QUEUE", "queue": "painter-data-enrich-geo" },
+			{ "binding": "LEAD_QUEUE", "queue": "painter-lead-ingest" },
+			{ "binding": "LEAD_NOTIFY_QUEUE", "queue": "painter-lead-notify-customer" },
+			{ "binding": "ORDER_SAVE_QUEUE", "queue": "painter-order-save" },
+			{ "binding": "ORDER_RECEIPT_QUEUE", "queue": "painter-order-send-receipt" },
+			{ "binding": "JOB_FINANCIALS_QUEUE", "queue": "painter-job-calculate-financials" },
+			{ "binding": "JOB_REMINDER_QUEUE", "queue": "painter-job-schedule-reminder" }
+		]
+	},
+	"kv_namespaces": [
+		{ "binding": "PAINTER_KV", "id": "35efdb46f84c434e83c05b31d8d418cb" }
+	],
+	"vectorize": [
+		{ "binding": "VECTORIZE", "index_name": "autorag-painter-rags" }
+	],
+	"ai": { "binding": "AI" },
+		"r2_buckets": [
+			{ "binding": "PAINT_BUCKET", "bucket_name": "paint-bucket" }
+		]
+		// "services": []
 }
