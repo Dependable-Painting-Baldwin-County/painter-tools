@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5SHM99TL');
+  </script>
+  <title>Professional Painting Services | Dependable Painting</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <meta name="description" content="Explore our full range of professional painting and repair services in Baldwin & Mobile County. From interior and exterior painting to drywall repair and color consultation.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dependablepainting.work/services.html">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer crossorigin="anonymous"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --brand-color: #ff3b3b;
+      --dark-bg: #0a0a0a;
+      --light-bg: #1a1a1a;
+      --text-light: #fff;
+      --text-muted: #ccc;
+      --card-gradient: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
+      --card-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
+      --card-shadow-hover: 0 8px 20px rgba(255, 59, 59, 0.4);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; background: #000; color: var(--text-light); line-height: 1.6; }
+    header { background: var(--dark-bg); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 9999; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
+    .brand { display: flex; align-items: center; gap: 0.8rem; }
+    .brand a { text-decoration: none; display: flex; align-items: center; }
+    .brand img { width: 40px; height: auto; }
+    .brand span { font-weight: bold; font-size: 1.4rem; color: var(--brand-color); }
+    .nav-icons { display: flex; align-items: center; gap: 1.2rem; }
+    .nav-icons a { color: var(--brand-color); font-size: 1.5rem; transition: color 0.3s ease; text-decoration: none; }
+    .nav-icons a:hover { color: var(--text-light); }
+    .hours-toggle { position: relative; }
+    #hoursPopup { display: none; position: absolute; top: 130%; right: 0; background-color: #000; color: var(--text-light); padding: 1rem; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px rgba(255, 59, 59, 0.5); white-space: nowrap; z-index: 10000; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    #hoursPopup.visible { display: block; opacity: 1; transform: translateY(0); }
+    #hoursPopup strong { color: var(--brand-color); }
+    .hamburger { width: 30px; height: 22px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; margin-left: 1rem; }
+    .hamburger span { height: 3px; width: 100%; background: var(--brand-color); border-radius: 2px; transition: 0.4s; }
+    .hamburger.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9.5px) rotate(-45deg); }
+    nav.menu { position: fixed; top: 0; left: -100%; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(4px); padding: 4rem 2rem; display: flex; flex-direction: column; gap: 1.8rem; z-index: 9998; overflow-y: auto; transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    nav.menu.open { left: 0; box-shadow: 5px 0 30px rgba(255, 59, 59, 0.2); }
+    nav.menu a { color: var(--brand-color); font-size: 1.5rem; font-weight: bold; text-decoration: none; display: block; padding: 0.5rem 0; opacity: 0; animation: menuItemFadeIn 0.5s ease forwards; transition: color 0.3s ease, transform 0.3s ease; }
+    nav.menu a:hover { color: var(--text-light); transform: translateX(5px); }
+    .close-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2.2rem; cursor: pointer; color: var(--brand-color); transition: color 0.3s ease, transform 0.3s ease; }
+    .close-btn:hover { color: #ffffff; transform: rotate(90deg); }
+    nav.menu .submenu { display: none; flex-direction: column; margin-top: 0.5rem; margin-left: 1rem; gap: 0.8rem; }
+    nav.menu .submenu.open { display: flex; }
+    section { padding: 5rem 2rem; text-align: center; background: var(--light-bg); }
+    .section-dark { background: var(--dark-bg); }
+    .hero-section { padding: 5rem 2rem; background: #000; }
+    h1, h2 { color: var(--text-light); }
+    h1 { font-size: 2.8rem; margin-bottom: 1rem; color: var(--brand-color); }
+    h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+    .hero-subtitle { font-size: 1.2rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;}
+    .hero-cta { background: var(--brand-color); color: white; padding: 1rem 2rem; font-weight: bold; border-radius: 6px; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; display: inline-block; }
+    .hero-cta:hover { background: #e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5); }
+    .services-grid-6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .service-card { background: var(--card-gradient); padding: 2rem; border-radius: 20px; box-shadow: var(--card-shadow); transition: transform 0.4s, box-shadow 0.4s; display: flex; flex-direction: column; text-align: left;}
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); }
+    .service-card h3 { color: var(--brand-color); font-size: 1.6rem; margin-bottom: 1rem; }
+    .service-card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; flex-grow: 1; }
+    .service-card a { color: var(--brand-color); font-weight: bold; text-decoration: none; transition: color 0.3s ease; align-self: flex-start; }
+    .service-card a:hover { color: var(--text-light); text-decoration: underline; }
+    .cta-highlight { border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 4rem 1rem; }
+    .cta-headline { font-size: 2.8rem; margin-bottom: 1.2rem; color: #ff3b3b; animation: pulseText 2.5s ease-in-out infinite; }
+    .cta-subtext { font-size: 1.2rem; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.6; color: #ccc;}
+    .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+    .cta-btn { background-color: #ff3b3b; color: #fff; padding: 0.85rem 1.8rem; border-radius: 6px; font-weight: bold; font-size: 1rem; text-decoration: none; transition: transform 0.3s ease, background-color 0.3s ease; }
+    .cta-btn:hover { transform: translateY(-2px); background-color: #e00000; text-decoration: none; }
+    #faq { background: var(--dark-bg); }
+    #faq h2 { color: var(--brand-color); }
+    .faq-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .faq-card { background-color: transparent; min-height: 220px; perspective: 1000px; cursor: pointer; }
+    .faq-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+    .faq-card.flipped .faq-card-inner { transform: rotateY(180deg); }
+    .faq-card-front, .faq-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1.5rem; border-radius: 15px; background: var(--card-gradient); box-shadow: 0 10px 20px rgba(255, 59, 59, 0.2); }
+    .faq-card-back { transform: rotateY(180deg); text-align: left; align-items: flex-start; justify-content: flex-start; }
+    .faq-card h3 { color: var(--brand-color); font-size: 1.4rem; margin-bottom: 0; text-align: center; }
+    .faq-card-back h3 { font-size: 1.2rem; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 59, 59, 0.5); width: 100%; text-align: left; }
+    .faq-card p { font-size: 1rem; color: var(--text-muted); margin-bottom: 0; }
+    #ai-assistant h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--brand-color); }
+    .ai-form { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .ai-form textarea { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #333; background: var(--dark-bg); color: var(--text-light); resize: vertical; font-family: Arial, sans-serif; font-size: 1rem;}
+    .ai-form button { background: var(--brand-color); color: var(--text-light); padding: 1rem 2rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+    .ai-form button:hover { background: #e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.4); }
+    .ai-form div { color: var(--text-muted); padding: 1rem; border-radius: 8px; background: var(--dark-bg); min-height: 50px; text-align: left; }
+    .map-section p { font-size: 1.1rem; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .map-section .contact-link { color: var(--brand-color); text-decoration: none; font-weight: bold;}
+    .map-container { max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 12px; border: 1px solid #222; box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2); }
+    .map-container iframe { display: block; width: 100%; height: 450px; border: 0; }
+    footer { background: var(--dark-bg); padding: 1rem 2rem; text-align: center; font-size: 0.9rem; }
+    footer a { color: var(--brand-color); text-decoration: none; }
+    footer a:hover { text-decoration: underline; color: var(--text-light); }
+    @media (max-width: 768px) { header { padding: 1rem; } h1 { font-size: 2.2rem; } h2 { font-size: 2rem; } .hero-subtitle { font-size: 1rem; } .nav-icons { gap: 0.8rem; } .nav-icons a { font-size: 1.3rem; } .hamburger { width: 25px; height: 18px; } nav.menu { padding: 3.5rem 1.5rem; } #hoursPopup { font-size: 0.8rem; right: 5px; top: 120%; } section { padding: 3rem 1rem; } .cta-headline { font-size: 2.2rem; } }
+    @keyframes menuItemFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulseText { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+  </style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SHM99TL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header>
+    <div class="brand">
+      <a href="https://dependablepainting.work/">
+        <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512" alt="Dependable Painting Logo">
+      </a>
+      <span>Dependable Painting</span>
+    </div>
+    <div class="nav-icons">
+      <div class="hours-toggle">
+        <a href="#" title="Business Hours" aria-label="Business Hours" onclick="event.preventDefault(); toggleHoursPopup();">
+          <i class="fas fa-clock"></i>
+        </a>
+        <div id="hoursPopup" role="tooltip">
+          <strong>Hours:</strong><br>
+          Mon - Fri: 8:00am – 5:30pm<br>
+          Saturday: By Appointment<br>
+          Sunday: Closed
+        </div>
+      </div>
+      <a href="tel:+12512891347" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+      <a href="https://g.page/r/CQjqan_iFBshEAE" target="_blank" rel="noopener noreferrer" title="Find us on Google" aria-label="Find us on Google"><i class="fab fa-google"></i></a>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="menu" id="mobileMenu" aria-hidden="true">
+    <div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">×</div>
+    <a href="https://dependablepainting.work/">Home</a>
+    <a href="https://dependablepainting.work/about.html">About Us</a>
+    <a href="#" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
+    <div class="submenu" id="submenu">
+      <a href="https://dependablepainting.work/services.html"><b>All Services Overview</b></a>
+      <a href="https://dependablepainting.work/interior-painting.html">Interior Painting</a>
+      <a href="https://dependablepainting.work/exterior-painting.html">Exterior Painting</a>
+      <a href="https://dependablepainting.work/cabinet-painting.html">Cabinet Painting</a>
+      <a href="https://dependablepainting.work/commercial-painting.html">Commercial Painting</a>
+      <a href="https://dependablepainting.work/sheetrock-repair.html">Sheetrock & Drywall Repair</a>
+      <a href="https://dependablepainting.work/color-consultation.html">Color Consultation</a>
+    </div>
+    <a href="https://dependablepainting.work/contact-form.html">Contact</a>
+    <a href="https://dependablepainting.work/#gallery">Gallery</a>
+    <a href="https://dependablepainting.work/privacy.html">Privacy Policy</a>
+  </nav>
+
+  <main>
+    <section class="hero-section">
+      <h1>Our Professional Painting Services</h1>
+      <p class="hero-subtitle">From flawless prep work to the final coat, we offer a full spectrum of painting and finishing services to protect and beautify your property.</p>
+      <a href="https://dependablepainting.work/contact-form.html" class="hero-cta">Get Your Free Estimate</a>
+    </section>
+
+    <section id="services-overview" class="section-dark">
+      <h2>Explore Our Services</h2>
+      <div class="services-grid-6">
+          <div class="service-card"><h3>Interior Painting</h3><p>Transform your indoor spaces with fresh colors and flawless finishes. From single rooms to whole homes, we handle it all with precision and care.</p><a href="https://dependablepainting.work/interior-painting.html">Learn More →</a></div>
+          <div class="service-card"><h3>Exterior Painting</h3><p>Protect and beautify your home's exterior with durable, weather-resistant paints. Enhance curb appeal and longevity with our expert touch.</p><a href="https://dependablepainting.work/exterior-painting.html">Learn More →</a></div>
+          <div class="service-card"><h3>Cabinet Painting</h3><p>Revitalize your kitchen or bathroom with stunning cabinet repainting. Achieve a factory-smooth finish that looks and lasts like new.</p><a href="https://dependablepainting.work/cabinet-painting.html">Learn More →</a></div>
+          <div class="service-card"><h3>Commercial Painting</h3><p>Professional painting for businesses and properties. We deliver high-quality results with minimal disruption to your operations.</p><a href="https://dependablepainting.work/commercial-painting.html">Learn More →</a></div>
+          <div class="service-card"><h3>Sheetrock & Drywall Repair</h3><p>From nail pops and stress cracks to larger holes, we make your walls look seamless and new again before the first drop of paint is applied.</p><a href="https://dependablepainting.work/sheetrock-repair.html">Learn More →</a></div>
+          <div class="service-card"><h3>Color Consultation</h3><p>Feeling overwhelmed by choices? Our experts help you select the perfect color palette to match your style, lighting, and vision for your space.</p><a href="https://dependablepainting.work/color-consultation.html">Learn More →</a></div>
+      </div>
+    </section>
+
+      <section id="what-to-expect">
+        <h2 class="section-title">The Dependable Difference</h2>
+        <div class="grid-3col">
+          <div class="service-card">
+            <h3>Owner on Every Job</h3>
+            <p>You're not hiring a random crew; you're hiring us. We are on-site ensuring every detail meets our high standards—no surprises, no shortcuts.</p>
+          </div>
+          <div class="service-card">
+            <h3>Meticulous Preparation</h3>
+            <p>A great paint job is 80% prep. We take the time to properly clean, sand, and prime every surface to guarantee a beautiful and long-lasting finish.</p>
+          </div>
+          <div class="service-card">
+            <h3>A Clean Sweep</h3>
+            <p>We respect your space. Our work area is kept clean and organized daily, and we leave your property looking better than we found it.</p>
+          </div>
+        </div>
+      </section>
+
+    <section class="cta-highlight" data-aos="fade-in">
+        <h2 class="cta-headline">Ready to Transform Your Space?</h2>
+        <p class="cta-subtext">Get a professional quote and experience the difference of clean work, trusted crews, and next-level results. No pressure. Just paint that works.</p>
+        <div class="cta-buttons">
+            <a href="tel:+12512891347" class="cta-btn primary">📞 Call Now</a>
+            <a href="https://dependablepainting.work/contact-form.html" class="cta-btn">Get My Free Quote</a>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2>Your Questions, Answered</h2>
+        <div class="faq-container">
+            <div class="faq-card" role="button" tabindex="0" data-aos="fade-up"><div class="faq-card-inner"><div class="faq-card-front"><h3>Are you licensed and insured?</h3></div><div class="faq-card-back"><h3>Are you licensed and insured?</h3><p>Yes. We are a fully licensed and insured painting company in Alabama, carrying all necessary general liability and workers' compensation coverage for your peace of mind.</p></div></div></div>
+            <div class="faq-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="100"><div class="faq-card-inner"><div class="faq-card-front"><h3>What kind of paint do you use?</h3></div><div class="faq-card-back"><h3>What kind of paint do you use?</h3><p>We primarily use high-quality Sherwin-Williams paints to ensure a durable, beautiful finish. We are also happy to accommodate your preference for another brand.</p></div></div></div>
+            <div class="faq-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="200"><div class="faq-card-inner"><div class="faq-card-front"><h3>Do you require a deposit?</h3></div><div class="faq-card-back"><h3>Do you require a deposit?</h3><p>Yes, we typically require a 25% deposit to schedule your project and order materials. The remaining balance is due upon satisfactory completion of the work.</p></div></div></div>
+            <div class="faq-card" role="button" tabindex="0" data-aos="fade-up" data-aos-delay="300"><div class="faq-card-inner"><div class="faq-card-front"><h3>What areas do you serve?</h3></div><div class="faq-card-back"><h3>What areas do you serve?</h3><p>We proudly serve both Baldwin and Mobile Counties, including Fairhope, Daphne, Spanish Fort, Mobile, and Bay Minette. We do not service Gulf Shores or Orange Beach for residential projects.</p></div></div></div>
+        </div>
+    </section>
+
+    <section id="ai-assistant" class="section-dark">
+      <h2>Ask Our AI Assistant</h2>
+      <p>Have a quick question? Ask our AI assistant about our services, service area, or processes.</p>
+      <div class="ai-form">
+        <textarea id="ai-question" rows="3" placeholder="Ask Paint Guru..." aria-label="Ask our AI a question"></textarea>
+        <button id="ask-ai-button">Get Answer</button>
+        <div id="ai-response" aria-live="polite">The AI's answer will appear here...</div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <h2>Where We Work</h2>
+      <p>Dependable Painting proudly serves homeowners and businesses throughout <strong>Baldwin County</strong> and <strong>Mobile County</strong>—including Fairhope, Daphne, Spanish Fort, Mobile, and surrounding areas. <b>We do not serve Gulf Shores or Orange Beach except for select large commercial projects.</b></p>
+      <p>Not sure if we come to your neighborhood? Call us at <a href="tel:+12512891347" class="contact-link">(251) 289-1347</a> and we will let you know.</p>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1757039.8570675706!2d-89.22027138732838!3d30.670055226573364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x889a5d78a87e436f%3A0x211b14e27f6aea08!2sDependable%20Painting!5e0!3m2!1sen!2sus!4v1754962557443!5m2!1sen!2sus" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dependable Painting Service Area Map"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12512891347" class="contact-link">(251) 289-1347</a> • Bay Minette, AL</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, once: true, offset: 80, delay: 50 });
+      }
+      
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburger = document.querySelector('.hamburger');
+      const hoursPopup = document.getElementById('hoursPopup');
+      const hoursToggleLink = document.querySelector('.hours-toggle a');
+      const submenu = document.getElementById('submenu');
+      const body = document.body;
+      const yearSpan = document.getElementById('current-year');
+      const askButton = document.getElementById('ask-ai-button');
+      const questionInput = document.getElementById('ai-question');
+      const responseDiv = document.getElementById('ai-response');
+      const faqCards = document.querySelectorAll('#faq .faq-card');
+
+      faqCards.forEach(card => {
+        card.setAttribute('aria-pressed', 'false');
+        const flip = () => {
+          const isFlipped = card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', isFlipped);
+        };
+        card.addEventListener('click', flip);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+        });
+      });
+
+      window.toggleMenu = () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('active', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+        body.style.overflow = isOpen ? 'hidden' : '';
+        if (isOpen) {
+          mobileMenu.querySelectorAll('a').forEach((link, i) => {
+            link.style.animation = 'none';
+            void link.offsetWidth;
+            link.style.animation = `menuItemFadeIn 0.5s ease forwards ${i * 0.07 + 0.1}s`;
+          });
+        }
+      };
+
+      window.toggleSubMenu = () => submenu?.classList.toggle('open');
+      
+      window.toggleHoursPopup = () => {
+        const isVisible = hoursPopup.classList.toggle('visible');
+        hoursToggleLink.setAttribute('aria-expanded', String(isVisible));
+      };
+
+      document.addEventListener('click', (event) => {
+        if (hoursPopup?.classList.contains('visible') && !event.target.closest('.hours-toggle')) {
+          hoursPopup.classList.remove('visible');
+          hoursToggleLink?.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      if (askButton) {
+        askButton.addEventListener('click', async () => {
+          const question = questionInput.value.trim();
+          if (!question) return;
+          responseDiv.textContent = 'Thinking...';
+          try {
+            const resp = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: question, page: window.location.pathname }) });
+            if (resp.ok) {
+              const data = await resp.json();
+              responseDiv.textContent = data.reply || 'No answer available.';
+            } else {
+              responseDiv.textContent = 'Sorry, something went wrong. Please try again.';
+            }
+          } catch (err) {
+            responseDiv.textContent = 'Network error. Please try again.';
+          }
+        });
+      }
+
+      if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+    });
+
+    (function () {
+      var sid=localStorage.getItem('dp_sid');if(!sid){sid='s_'+Math.random().toString(36).slice(2,10);localStorage.setItem('dp_sid',sid);}
+      var PAGE=location.pathname||'/';var SVC=(p=>{p=(p||'').toLowerCase();if(p.includes('exterior'))return'exterior';if(p.includes('interior'))return'interior';if(p.includes('cabinet'))return'cabinets';if(p.includes('commercial'))return'commercial';return'other'})(PAGE);
+      function send(type,extra){var U=new URLSearchParams(location.search);var utm={source:sessionStorage.getItem('utm_source')||U.get('utm_source')||'',medium:sessionStorage.getItem('utm_medium')||U.get('utm_medium')||'',campaign:sessionStorage.getItem('utm_campaign')||U.get('utm_campaign')||''};var gclid=sessionStorage.getItem('gclid')||U.get('gclid')||'';if(utm.source)sessionStorage.setItem('utm_source',utm.source);if(utm.medium)sessionStorage.setItem('utm_medium',utm.medium);if(utm.campaign)sessionStorage.setItem('utm_campaign',utm.campaign);if(gclid)sessionStorage.setItem('gclid',gclid);var payload=Object.assign({type:type,page:PAGE,service:SVC,session:sid,utm:utm,gclid:gclid},extra||{});var blob=new Blob([JSON.stringify(payload)],{type:'application/json'});if(!navigator.sendBeacon||!navigator.sendBeacon('/api/track',blob)){fetch('/api/track',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)}).catch(()=>{});}}
+      send('visit');var fired50=false;window.addEventListener('scroll',function(){if(fired50)return;var sc=(window.scrollY+window.innerHeight)/Math.max(document.body.scrollHeight,1)*100;if(sc>=50){fired50=true;send('scroll',{scroll_pct:50});}},{passive:true});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a){send('click_call');}});var t0=performance.now();window.addEventListener('pagehide',function(){send('visit',{duration_ms:Math.round(performance.now()-t0)});});
+    })();
+  </script>
+</body>
+</html>

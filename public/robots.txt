@@ -1,0 +1,11 @@
+User-agent: *
+Sitemap: https://dependablepainting.work/sitemap.xml
+
+Allow: /
+Allow: /interior-painting
+Allow: /exterior-painting
+Allow: /cabinet-painting
+Allow: /commercial-painting
+Allow: /contact-form
+Allow: /thank-you
+Allow: /about
