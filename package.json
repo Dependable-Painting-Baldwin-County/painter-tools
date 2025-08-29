@@ -2,6 +2,22 @@
 	"name": "painter-tools",
 	"version": "0.0.0",
 	"private": true,
+	"description": "",
+	"homepage": "https://github.com/Dependable-Painting-Baldwin-County/painter-tools#readme",
+	"bugs": {
+		"url": "https://github.com/Dependable-Painting-Baldwin-County/painter-tools/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Dependable-Painting-Baldwin-County/painter-tools.git"
+	},
+	"license": "ISC",
+	"author": "Alex Dimmler",
+	"type": "commonjs",
+	"main": "vitest.config.js",
+	"directories": {
+		"test": "test"
+	},
 	"scripts": {
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
