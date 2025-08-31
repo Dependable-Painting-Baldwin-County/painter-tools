@@ -21,7 +21,16 @@ async function sendPaintGuruMessage(message, opts = {}) {
 window.paintGuru = {
   send: sendPaintGuruMessage
 };
-
+// CREATE TABLE IF NOT EXISTS chat_log (
+//   id INTEGER PRIMARY KEY AUTOINCREMENT,
+//   ts TEXT,
+//   session TEXT,
+//   question TEXT,
+//   answer TEXT,
+//   ai_provider TEXT,
+//   user_agent TEXT,
+//   page TEXT
+// );
 // Optionally, you can add UI integration here, e.g.:
 // document.querySelector('#paint-guru-form').onsubmit = async function(e) {
 //   e.preventDefault();

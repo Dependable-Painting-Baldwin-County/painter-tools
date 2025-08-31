@@ -1,4 +1,4 @@
-	{
+{
 		"name": "painter-tools",
 	"main": "src/index.js",
 	"compatibility_date": "2025-08-29",
@@ -41,6 +41,10 @@
 	"ai": { "binding": "AI" },
 		"r2_buckets": [
 			{ "binding": "PAINT_BUCKET", "bucket_name": "paint-bucket" }
-		]
+		],
+	"vars": {
+		"DESTINATION": "alexdimmler@dependablepainting.work",
+		"SENDER": "no-reply@dependablepainting.work"
+		}
 		// "services": []
 }

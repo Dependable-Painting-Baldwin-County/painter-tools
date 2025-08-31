@@ -1,13 +1,6 @@
-
 import { Hono } from 'hono';
 import { serveStatic } from 'hono/cloudflare-workers';
-
 const app = new Hono();
-
-// --- API ROUTES ---
-app.get('/message', (c) => c.text('Hello, World!'));
-app.get('/random', (c) => c.text(crypto.randomUUID()));
-
 // Contact/lead form
 app.post('/api/estimate', async (c) => {
 	const env = c.env;
@@ -85,7 +78,12 @@ app.post('/api/estimate', async (c) => {
 			const to = env.ADMIN_EMAIL || env.OWNER_EMAIL || env.TO_ADDR || 'just-paint-it@dependablepainting.work';
 			const msg = new EmailMessage(from, to, subject);
 			msg.setBody('text/plain', text);
-			await env.SEB.send(msg);
+			await env.SEB.send({
+				personalizations: [{ to: [{ email: env.DESTINATION }] }],
+				from: { email: env.SENDER, name: env.SITE_NAME || "Dependable Painting" },
+				subject: "New Lead Submission",
+				content: [{ type: "text/plain", value: emailBody }]
+			});
 		}
 	} catch (e) {
 		// Log but do not fail the request
@@ -99,7 +97,12 @@ app.post('/api/estimate', async (c) => {
 			const from = `${env.SITE_NAME || 'Dependable Painting'} <${env.FROM_ADDR || 'no-reply@dependablepainting.work'}>`;
 			const msg = new EmailMessage(env.FROM_ADDR || 'no-reply@dependablepainting.work', to, subject);
 			msg.setBody('text/html', html);
-			await env.SEB.send(msg);
+			await env.SEB.send({
+				personalizations: [{ to: [{ email: lead.email }] }],
+				from: { email: env.SENDER, name: env.SITE_NAME || "Dependable Painting" },
+				subject: "Thank you for contacting us!",
+				content: [{ type: "text/plain", value: autoReplyBody }]
+			});
 		}
 	} catch (e) {
 		// Log but do not fail the request
@@ -318,4 +321,28 @@ app.get('/api/health', (c) => c.json({ ok: true, ts: Date.now() }));
 // Serve static assets from the public directory (fallback)
 app.use('*', serveStatic({ root: './' }));
 
-export default app;
+export default app;events(
+  id, INTEGER, PRIMARY, KEY, AUTOINCREMENT,
+  ts, TEXT,
+  type, TEXT,
+  page, TEXT,
+  service, TEXT,
+  source, TEXT,
+  device, TEXT,
+  city, TEXT,
+  country, TEXT,
+  session, TEXT,
+  referrer, TEXT,
+  utm_source, TEXT,
+  utm_medium, TEXT,
+  utm_campaign, TEXT,
+  gclid, TEXT,
+  scroll_pct, TEXT,
+  clicks, TEXT,
+  call, TEXT,
+  duration_ms, TEXT,
+  button, TEXT,
+  zip, TEXT,
+  area, TEXT
+);
+
