@@ -15,7 +15,7 @@
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://dependablepainting.work/#organization",
+          "@id": "https://dependablepainting.work/organization",
           "name": "Dependable Painting",
           "url": "https://dependablepainting.work/",
           "telephone": "+1-251-289-1347",
@@ -25,10 +25,10 @@
         },
         {
           "@type": "WebPage",
-          "@id": "https://dependablepainting.work/privacy.html#webpage",
+          "@id": "https://dependablepainting.work/privacy.htmlwebpage",
           "url": "https://dependablepainting.work/privacy.html",
           "name": "Privacy Policy | Dependable Painting",
-          "isPartOf": {"@id":"https://dependablepainting.work/#organization"}
+          "isPartOf": {"@id":"https://dependablepainting.work/organization"}
         },
         {
           "@type": "BreadcrumbList",
@@ -52,11 +52,11 @@
         content="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
     <style>
         :root {
-            --brand-color: #ff3b3b;
-            --dark-bg: #0a0a0a;
-            --light-bg: #1a1a1a;
-            --text-light: #fff;
-            --text-muted: #ccc;
+            --brand-color: ff3b3b;
+            --dark-bg: 0a0a0a;
+            --light-bg: 1a1a1a;
+            --text-light: fff;
+            --text-muted: ccc;
         }
 
         *,
@@ -73,7 +73,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #000;
+            background: 000;
             color: var(--text-light);
             line-height: 1.6;
         }
@@ -134,15 +134,15 @@
             position: relative;
         }
 
-        #hoursPopup {
+        hoursPopup {
             display: none;
             position: absolute;
             top: 130%;
             right: 0;
-            background-color: #000;
+            background-color: 000;
             color: var(--text-light);
             padding: 1rem;
-            border: 1px solid #333;
+            border: 1px solid 333;
             border-radius: 6px;
             box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
             white-space: nowrap;
@@ -152,13 +152,13 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        #hoursPopup.visible {
+        hoursPopup.visible {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        #hoursPopup strong {
+        hoursPopup strong {
             color: var(--brand-color);
         }
 
@@ -242,7 +242,7 @@
         }
 
         .close-btn:hover {
-            color: #ffffff;
+            color: ffffff;
             transform: rotate(90deg);
         }
 
@@ -289,7 +289,7 @@
         .content-container h2 {
             font-size: 1.8rem;
             margin-top: 2rem;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid 333;
             padding-bottom: 0.5rem;
         }
 
@@ -323,7 +323,7 @@
             text-align: center;
             font-size: 0.9rem;
             color: var(--text-muted);
-            border-top: 1px solid #222;
+            border-top: 1px solid 222;
         }
 
         footer a {
@@ -406,7 +406,7 @@
         </div>
         <div class="nav-icons">
             <div class="hours-toggle">
-                <a href="#" title="Business Hours" aria-label="Business Hours"
+                <a href="" title="Business Hours" aria-label="Business Hours"
                     onclick="event.preventDefault(); toggleHoursPopup();">
                     <i class="fas fa-clock"></i>
                 </a>
@@ -431,7 +431,7 @@
         <div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">×</div>
         <a href="/">Home</a>
         <a href="about.html">About Us</a>
-        <a href="#" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
+        <a href="" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
         <div class="submenu" id="submenu">
             <a href="interior-painting.html">Interior Painting</a>
             <a href="exterior-painting.html">Exterior Painting</a>
@@ -440,7 +440,7 @@
             <a href="wood-siding.html">Wood Siding</a>
         </div>
         <a href="/contact-form.html">Contact</a>
-        <a href="/#gallery">Gallery</a>
+        <a href="/gallery">Gallery</a>
         <a href="privacy.html" class="active-link">Privacy Policy</a>
     </nav>
     <main>

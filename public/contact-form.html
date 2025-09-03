@@ -25,13 +25,13 @@
   <meta property="og:site_name" content="Dependable Painting">
   <style>
     :root {
-      --brand-color: #ff3b3b;
-      --dark-bg: #0a0a0a;
-      --light-bg: #1a1a1a;
-      --input-bg: #222;
-      --text-light: #fff;
-      --text-muted: #ccc;
-      --border-color: #333;
+      --brand-color: ff3b3b;
+      --dark-bg: 0a0a0a;
+      --light-bg: 1a1a1a;
+      --input-bg: 222;
+      --text-light: fff;
+      --text-muted: ccc;
+      --border-color: 333;
     }
 
     *,
@@ -48,7 +48,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #000;
+      background: 000;
       color: var(--text-light);
       line-height: 1.6;
     }
@@ -104,7 +104,7 @@
       margin: 0 auto 2.5rem;
     }
 
-    #contact-form-section {
+    contact-form-section {
       max-width: 600px;
       margin: 0 auto;
       background: var(--light-bg);
@@ -114,16 +114,16 @@
       text-align: left;
     }
 
-    #contact-form label {
+    contact-form label {
       display: block;
       color: var(--brand-color);
       font-weight: bold;
       margin-bottom: 0.5rem;
     }
 
-    #contact-form input,
-    #contact-form select,
-    #contact-form textarea {
+    contact-form input,
+    contact-form select,
+    contact-form textarea {
       width: 100%;
       padding: 0.8rem;
       border-radius: 8px;
@@ -134,7 +134,7 @@
       margin-bottom: 1.5rem;
     }
 
-    #contact-form button {
+    contact-form button {
       background-color: var(--brand-color);
       color: white;
       padding: 1rem 2rem;
@@ -147,17 +147,17 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    #contact-form button:hover:not(:disabled) {
-      background-color: #d62828;
+    contact-form button:hover:not(:disabled) {
+      background-color: d62828;
       transform: scale(1.02);
     }
 
-    #contact-form button:disabled {
-      background-color: #555;
+    contact-form button:disabled {
+      background-color: 555;
       cursor: not-allowed;
     }
 
-    #response {
+    response {
       margin-top: 1.5rem;
       background: var(--border-color);
       padding: 1rem;
@@ -201,7 +201,7 @@
       padding: 2rem;
       text-align: center;
       font-size: 0.9rem;
-      border-top: 1px solid #222;
+      border-top: 1px solid 222;
     }
 
     footer a {
@@ -229,7 +229,7 @@
         font-size: 1rem;
       }
 
-      #contact-form-section {
+      contact-form-section {
         padding: 1.5rem;
       }
     }
@@ -238,7 +238,7 @@
     {
       "@context": "https://schema.org",
       "@graph": [
-        { "@type": "WebPage", "@id": "https://dependablepainting.work/contact-form.html#webpage", "url": "https://dependablepainting.work/contact-form.html", "name": "Contact Form | Dependable Painting", "isPartOf": { "@id": "https://dependablepainting.work/#organization" } },
+        { "@type": "WebPage", "@id": "https://dependablepainting.work/contact-form.htmlwebpage", "url": "https://dependablepainting.work/contact-form.html", "name": "Contact Form | Dependable Painting", "isPartOf": { "@id": "https://dependablepainting.work/organization" } },
         { "@type": "BreadcrumbList", "itemListElement": [
           {"@type":"ListItem","position":1,"name":"Home","item":"https://dependablepainting.work/"},
           {"@type":"ListItem","position":2,"name":"Contact","item":"https://dependablepainting.work/contact-form.html"}
@@ -384,7 +384,7 @@
   <!-- Contact form handler -->
   <script src="/api/contact-form.js"></script>
   <script>
-    submitContactForm('#contact-form');
+    submitContactForm('contact-form');
     // Paint Guru chat can be used via window.paintGuru.send(message)
   </script>
 </body>

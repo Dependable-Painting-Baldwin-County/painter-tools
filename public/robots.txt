@@ -1,8 +1,8 @@
 User-agent: *
-# Sitemap location
+ Sitemap location
 Sitemap: https://dependablepainting.work/sitemap.xml
 
-# Allow all main pages
+ Allow all main pages
 Allow: /
 Allow: /interior-painting.html
 Allow: /exterior-painting.html
@@ -12,17 +12,17 @@ Allow: /contact-form.html
 Allow: /about.html
 Allow: /services.html
 
-# Disallow sensitive or duplicate content
+ Disallow sensitive or duplicate content
 Disallow: /checkout.html
 Disallow: /payments.html
 Disallow: /privacy.html
 Disallow: /404.html
 Disallow: /api/
 
-# Crawl-delay for non-Google bots (optional, helps server load)
+ Crawl-delay for non-Google bots (optional, helps server load)
 Crawl-delay: 5
 
-# Block specific bots (example)
+ Block specific bots (example)
 User-agent: AhrefsBot
 Disallow: /
 
