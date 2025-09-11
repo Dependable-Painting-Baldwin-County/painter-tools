@@ -17,18 +17,18 @@
 
   <style>
     :root {
-      --brand-color: ff3b3b;
-      --dark-bg: 0a0a0a;
-      --light-bg: 1a1a1a;
-      --text-light: fff;
-      --text-muted: ccc;
-      --card-gradient: linear-gradient(145deg, 111 0%, 1f1f1f 100%);
+      --brand-color: #ff3b3b;
+      --dark-bg: #0a0a0a;
+      --light-bg: #1a1a1a;
+      --text-light: #fff;
+      --text-muted: #ccc;
+      --card-gradient: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
       --card-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
       --card-shadow-hover: 0 8px 20px rgba(255, 59, 59, 0.4);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: Arial, sans-serif; background: 000; color: var(--text-light); line-height: 1.6; }
+    body { font-family: Arial, sans-serif; background: #000; color: var(--text-light); line-height: 1.6; }
     header { background: var(--dark-bg); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 9999; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
     .brand { display: flex; align-items: center; gap: 0.8rem; }
     .brand a { text-decoration: none; display: flex; align-items: center; }
@@ -38,9 +38,9 @@
     .nav-icons a { color: var(--brand-color); font-size: 1.5rem; transition: color 0.3s ease; text-decoration: none; }
     .nav-icons a:hover { color: var(--text-light); }
     .hours-toggle { position: relative; }
-    hoursPopup { display: none; position: absolute; top: 130%; right: 0; background-color: 000; color: var(--text-light); padding: 1rem; border: 1px solid 333; border-radius: 6px; box-shadow: 0 0 10px rgba(255, 59, 59, 0.5); white-space: nowrap; z-index: 10000; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
-    hoursPopup.visible { display: block; opacity: 1; transform: translateY(0); }
-    hoursPopup strong { color: var(--brand-color); }
+    #hoursPopup { display: none; position: absolute; top: 130%; right: 0; background-color: #000; color: var(--text-light); padding: 1rem; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px rgba(255, 59, 59, 0.5); white-space: nowrap; z-index: 10000; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    #hoursPopup.visible { display: block; opacity: 1; transform: translateY(0); }
+    #hoursPopup strong { color: var(--brand-color); }
     .hamburger { width: 30px; height: 22px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; margin-left: 1rem; }
     .hamburger span { height: 3px; width: 100%; background: var(--brand-color); border-radius: 2px; transition: 0.4s; }
     .hamburger.active span:nth-child(1) { transform: translateY(9.5px) rotate(45deg); }
@@ -51,18 +51,18 @@
     nav.menu a { color: var(--brand-color); font-size: 1.5rem; font-weight: bold; text-decoration: none; display: block; padding: 0.5rem 0; opacity: 0; animation: menuItemFadeIn 0.5s ease forwards; transition: color 0.3s ease, transform 0.3s ease; }
     nav.menu a:hover { color: var(--text-light); transform: translateX(5px); }
     .close-btn { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 2.2rem; cursor: pointer; color: var(--brand-color); transition: color 0.3s ease, transform 0.3s ease; }
-    .close-btn:hover { color: ffffff; transform: rotate(90deg); }
+    .close-btn:hover { color: #ffffff; transform: rotate(90deg); }
     nav.menu .submenu { display: none; flex-direction: column; margin-top: 0.5rem; margin-left: 1rem; gap: 0.8rem; }
     nav.menu .submenu.open { display: flex; }
     section { padding: 5rem 2rem; text-align: center; background: var(--light-bg); }
     .section-dark { background: var(--dark-bg); }
-    .hero-section { padding: 5rem 2rem; background: 000; }
+    .hero-section { padding: 5rem 2rem; background: #000; }
     h1, h2 { color: var(--text-light); }
     h1 { font-size: 2.8rem; margin-bottom: 1rem; color: var(--brand-color); }
     h2 { font-size: 2.5rem; margin-bottom: 3rem; }
     .hero-subtitle { font-size: 1.2rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;}
     .hero-cta { background: var(--brand-color); color: white; padding: 1rem 2rem; font-weight: bold; border-radius: 6px; text-decoration: none; font-size: 1.1rem; transition: all 0.3s ease; display: inline-block; }
-    .hero-cta:hover { background: e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5); }
+    .hero-cta:hover { background: #e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5); }
     .services-grid-6 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .service-card { background: var(--card-gradient); padding: 2rem; border-radius: 20px; box-shadow: var(--card-shadow); transition: transform 0.4s, box-shadow 0.4s; display: flex; flex-direction: column; text-align: left;}
     .service-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); }
@@ -70,14 +70,14 @@
     .service-card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; flex-grow: 1; }
     .service-card a { color: var(--brand-color); font-weight: bold; text-decoration: none; transition: color 0.3s ease; align-self: flex-start; }
     .service-card a:hover { color: var(--text-light); text-decoration: underline; }
-    .cta-highlight { border-top: 1px solid 333; border-bottom: 1px solid 333; padding: 4rem 1rem; }
-    .cta-headline { font-size: 2.8rem; margin-bottom: 1.2rem; color: ff3b3b; animation: pulseText 2.5s ease-in-out infinite; }
-    .cta-subtext { font-size: 1.2rem; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.6; color: ccc;}
+    .cta-highlight { border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 4rem 1rem; }
+    .cta-headline { font-size: 2.8rem; margin-bottom: 1.2rem; color: #ff3b3b; animation: pulseText 2.5s ease-in-out infinite; }
+    .cta-subtext { font-size: 1.2rem; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.6; color: #ccc;}
     .cta-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
-    .cta-btn { background-color: ff3b3b; color: fff; padding: 0.85rem 1.8rem; border-radius: 6px; font-weight: bold; font-size: 1rem; text-decoration: none; transition: transform 0.3s ease, background-color 0.3s ease; }
-    .cta-btn:hover { transform: translateY(-2px); background-color: e00000; text-decoration: none; }
-    faq { background: var(--dark-bg); }
-    faq h2 { color: var(--brand-color); }
+    .cta-btn { background-color: #ff3b3b; color: #fff; padding: 0.85rem 1.8rem; border-radius: 6px; font-weight: bold; font-size: 1rem; text-decoration: none; transition: transform 0.3s ease, background-color 0.3s ease; }
+    .cta-btn:hover { transform: translateY(-2px); background-color: #e00000; text-decoration: none; }
+    #faq { background: var(--dark-bg); }
+    #faq h2 { color: var(--brand-color); }
     .faq-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .faq-card { background-color: transparent; min-height: 220px; perspective: 1000px; cursor: pointer; }
     .faq-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
@@ -87,20 +87,20 @@
     .faq-card h3 { color: var(--brand-color); font-size: 1.4rem; margin-bottom: 0; text-align: center; }
     .faq-card-back h3 { font-size: 1.2rem; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255, 59, 59, 0.5); width: 100%; text-align: left; }
     .faq-card p { font-size: 1rem; color: var(--text-muted); margin-bottom: 0; }
-    ai-assistant h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--brand-color); }
+    #ai-assistant h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--brand-color); }
     .ai-form { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-    .ai-form textarea { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid 333; background: var(--dark-bg); color: var(--text-light); resize: vertical; font-family: Arial, sans-serif; font-size: 1rem;}
+    .ai-form textarea { width: 100%; padding: 1rem; border-radius: 8px; border: 1px solid #333; background: var(--dark-bg); color: var(--text-light); resize: vertical; font-family: Arial, sans-serif; font-size: 1rem;}
     .ai-form button { background: var(--brand-color); color: var(--text-light); padding: 1rem 2rem; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
-    .ai-form button:hover { background: e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.4); }
+    .ai-form button:hover { background: #e00000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 59, 59, 0.4); }
     .ai-form div { color: var(--text-muted); padding: 1rem; border-radius: 8px; background: var(--dark-bg); min-height: 50px; text-align: left; }
     .map-section p { font-size: 1.1rem; margin-bottom: 1rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6; }
     .map-section .contact-link { color: var(--brand-color); text-decoration: none; font-weight: bold;}
-    .map-container { max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 12px; border: 1px solid 222; box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2); }
+    .map-container { max-width: 1000px; margin: 0 auto; overflow: hidden; border-radius: 12px; border: 1px solid #222; box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2); }
     .map-container iframe { display: block; width: 100%; height: 450px; border: 0; }
     footer { background: var(--dark-bg); padding: 1rem 2rem; text-align: center; font-size: 0.9rem; }
     footer a { color: var(--brand-color); text-decoration: none; }
     footer a:hover { text-decoration: underline; color: var(--text-light); }
-    @media (max-width: 768px) { header { padding: 1rem; } h1 { font-size: 2.2rem; } h2 { font-size: 2rem; } .hero-subtitle { font-size: 1rem; } .nav-icons { gap: 0.8rem; } .nav-icons a { font-size: 1.3rem; } .hamburger { width: 25px; height: 18px; } nav.menu { padding: 3.5rem 1.5rem; } hoursPopup { font-size: 0.8rem; right: 5px; top: 120%; } section { padding: 3rem 1rem; } .cta-headline { font-size: 2.2rem; } }
+    @media (max-width: 768px) { header { padding: 1rem; } h1 { font-size: 2.2rem; } h2 { font-size: 2rem; } .hero-subtitle { font-size: 1rem; } .nav-icons { gap: 0.8rem; } .nav-icons a { font-size: 1.3rem; } .hamburger { width: 25px; height: 18px; } nav.menu { padding: 3.5rem 1.5rem; } #hoursPopup { font-size: 0.8rem; right: 5px; top: 120%; } section { padding: 3rem 1rem; } .cta-headline { font-size: 2.2rem; } }
     @keyframes menuItemFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes pulseText { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
   </style>
@@ -117,7 +117,7 @@
     </div>
     <div class="nav-icons">
       <div class="hours-toggle">
-        <a href="" title="Business Hours" aria-label="Business Hours" onclick="event.preventDefault(); toggleHoursPopup();">
+        <a href="#" title="Business Hours" aria-label="Business Hours" onclick="event.preventDefault(); toggleHoursPopup();">
           <i class="fas fa-clock"></i>
         </a>
         <div id="hoursPopup" role="tooltip">
@@ -135,11 +135,18 @@
     </div>
   </header>
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li aria-current="page">Services</li>
+    </ol>
+  </nav>
+
   <nav class="menu" id="mobileMenu" aria-hidden="true">
     <div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">×</div>
     <a href="https://dependablepainting.work/">Home</a>
     <a href="https://dependablepainting.work/about.html">About Us</a>
-    <a href="" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
+    <a href="#" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
     <div class="submenu" id="submenu">
       <a href="https://dependablepainting.work/services.html"><b>All Services Overview</b></a>
       <a href="https://dependablepainting.work/interior-painting.html">Interior Painting</a>
@@ -150,7 +157,7 @@
       <a href="https://dependablepainting.work/color-consultation.html">Color Consultation</a>
     </div>
     <a href="https://dependablepainting.work/contact-form.html">Contact</a>
-    <a href="https://dependablepainting.work/gallery">Gallery</a>
+    <a href="https://dependablepainting.work/#gallery">Gallery</a>
     <a href="https://dependablepainting.work/privacy.html">Privacy Policy</a>
   </nav>
 
@@ -234,6 +241,9 @@
     <p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12512891347" class="contact-link">(251) 289-1347</a> • Bay Minette, AL</p>
   </footer>
 
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dependablepainting.work/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://dependablepainting.work/services.html"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Painting & Related Services","itemListElement":[{"@type":"ListItem","position":1,"url":"https://dependablepainting.work/interior-painting.html","name":"Interior Painting"},{"@type":"ListItem","position":2,"url":"https://dependablepainting.work/exterior-painting.html","name":"Exterior Painting"},{"@type":"ListItem","position":3,"url":"https://dependablepainting.work/cabinet-painting.html","name":"Cabinet Painting"},{"@type":"ListItem","position":4,"url":"https://dependablepainting.work/commercial-painting.html","name":"Commercial Painting"},{"@type":"ListItem","position":5,"url":"https://dependablepainting.work/wood-siding.html","name":"Wood Siding & Fascia Painting"}]}</script>
+
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
@@ -252,7 +262,7 @@
       const askButton = document.getElementById('ask-ai-button');
       const questionInput = document.getElementById('ai-question');
       const responseDiv = document.getElementById('ai-response');
-      const faqCards = document.querySelectorAll('faq .faq-card');
+      const faqCards = document.querySelectorAll('#faq .faq-card');
 
       faqCards.forEach(card => {
         card.setAttribute('aria-pressed', 'false');
@@ -324,9 +334,5 @@
       send('visit');var fired50=false;window.addEventListener('scroll',function(){if(fired50)return;var sc=(window.scrollY+window.innerHeight)/Math.max(document.body.scrollHeight,1)*100;if(sc>=50){fired50=true;send('scroll',{scroll_pct:50});}},{passive:true});document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a){send('click_call');}});var t0=performance.now();window.addEventListener('pagehide',function(){send('visit',{duration_ms:Math.round(performance.now()-t0)});});
     })();
   </script>
-  <!-- Modern Analytics, Chat, and Contact Form Scripts -->
-  <script src="/analytics.js" defer></script>
-  <script src="/paint-guru.js" defer></script>
-  <script src="/api/contact-form.js" defer></script>
 </body>
 </html>

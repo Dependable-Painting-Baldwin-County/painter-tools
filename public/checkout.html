@@ -15,13 +15,13 @@
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         :root {
-            --brand-color: ff3b3b;
-            --dark-bg: 0a0a0a;
-            --light-bg: 1a1a1a;
-            --input-bg: 222;
-            --text-light: fff;
-            --text-muted: ccc;
-            --border-color: 333;
+            --brand-color: #ff3b3b;
+            --dark-bg: #0a0a0a;
+            --light-bg: #1a1a1a;
+            --input-bg: #222;
+            --text-light: #fff;
+            --text-muted: #ccc;
+            --border-color: #333;
         }
 
         *,
@@ -34,7 +34,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: 000;
+            background: #000;
             color: var(--text-light);
             line-height: 1.6;
         }
@@ -119,14 +119,14 @@
             color: var(--brand-color);
         }
 
-        card-element {
+        #card-element {
             padding: 1rem;
             border-radius: 8px;
             border: 1px solid var(--border-color);
             background: var(--input-bg);
         }
 
-        submit-button {
+        #submit-button {
             background-color: var(--brand-color);
             color: white;
             padding: 1rem 2rem;
@@ -139,13 +139,13 @@
             transition: background-color 0.3s ease;
         }
 
-        submit-button:disabled {
-            background-color: 555;
+        #submit-button:disabled {
+            background-color: #555;
             cursor: not-allowed;
         }
 
-        card-errors {
-            color: fa755a;
+        #card-errors {
+            color: #fa755a;
             margin-top: 1rem;
             text-align: center;
         }
@@ -156,7 +156,7 @@
             padding: 2rem;
             text-align: center;
             font-size: 0.9rem;
-            border-top: 1px solid 222;
+            border-top: 1px solid #222;
         }
     </style>
 </head>
@@ -227,7 +227,7 @@
         const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY');
         const elements = stripe.elements();
         const cardElement = elements.create('card');
-        cardElement.mount('card-element');
+        cardElement.mount('#card-element');
 
         const form = document.getElementById('payment-form');
         const submitButton = document.getElementById('submit-button');

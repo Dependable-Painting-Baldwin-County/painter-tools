@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png"
     href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <meta name="theme-color" content="000000">
+  <meta name="theme-color" content="#000000">
   <meta name="keywords"
     content="painter, painting contractor, house painting, commercial painting, interior painting, exterior painting, cabinet painting, Baldwin County painter, Mobile County painter, Fairhope painter, Daphne painting company, Spanish Fort painting contractor, Bay Minette painter, dependable painting">
   <meta name="author" content="Dependable Painting">
@@ -23,7 +23,7 @@
     {
       "@context": "https://schema.org",
       "@type": "PaintingContractor",
-      "@id": "https://dependablepainting.work/organization",
+      "@id": "https://dependablepainting.work/#organization",
       "name": "Dependable Painting",
       "url": "https://dependablepainting.work/",
       "image": "https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512",
@@ -51,12 +51,12 @@
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <style>
     :root {
-      --brand-color: ff3b3b;
-      --dark-bg: 0a0a0a;
-      --light-bg: 1a1a1a;
-      --text-light: fff;
-      --text-muted: ccc;
-      --card-gradient: linear-gradient(145deg, 111 0%, 1f1f1f 100%);
+      --brand-color: #ff3b3b;
+      --dark-bg: #0a0a0a;
+      --light-bg: #1a1a1a;
+      --text-light: #fff;
+      --text-muted: #ccc;
+      --card-gradient: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
       --card-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
       --card-shadow-hover: 0 8px 20px rgba(255, 59, 59, 0.4);
     }
@@ -75,7 +75,7 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: 000;
+      background: #000;
       color: var(--text-light);
       line-height: 1.6;
     }
@@ -136,15 +136,15 @@
       position: relative;
     }
 
-    hoursPopup {
+    #hoursPopup {
       display: none;
       position: absolute;
       top: 130%;
       right: 0;
-      background-color: 000;
+      background-color: #000;
       color: var(--text-light);
       padding: 1rem;
-      border: 1px solid 333;
+      border: 1px solid #333;
       border-radius: 6px;
       box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
       white-space: nowrap;
@@ -154,13 +154,13 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    hoursPopup.visible {
+    #hoursPopup.visible {
       display: block;
       opacity: 1;
       transform: translateY(0);
     }
 
-    hoursPopup strong {
+    #hoursPopup strong {
       color: var(--brand-color);
     }
 
@@ -244,7 +244,7 @@
     }
 
     .close-btn:hover {
-      color: ffffff;
+      color: #ffffff;
       transform: rotate(90deg);
     }
 
@@ -272,7 +272,7 @@
 
     .hero-section {
       padding: 5rem 2rem;
-      background: 000;
+      background: #000;
     }
 
     h1,
@@ -309,7 +309,7 @@
     }
 
     .hero-cta:hover {
-      background: e00000;
+      background: #e00000;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 59, 59, 0.5);
     }
@@ -412,31 +412,31 @@
     }
 
     .cta-large:hover {
-      background: e00000;
+      background: #e00000;
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(255, 59, 59, 0.4);
     }
 
-    gallery {
+    #gallery {
       padding: 3rem 1rem;
     }
 
-    gallery h2 {
+    #gallery h2 {
       font-weight: 700;
       color: var(--brand-color);
     }
 
-    gallery p {
+    #gallery p {
       max-width: 700px;
       margin: 0 auto 2.5rem;
       font-size: 1.1rem;
     }
 
-    instant-pricing {
+    #instant-pricing {
       background: var(--dark-bg);
     }
 
-    instant-pricing .packages-grid {
+    #instant-pricing .packages-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
@@ -444,7 +444,7 @@
       margin: 0 auto;
     }
 
-    instant-pricing .package-card {
+    #instant-pricing .package-card {
       background: var(--light-bg);
       padding: 2rem;
       border-radius: 15px;
@@ -452,47 +452,47 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border: 1px solid 222;
+      border: 1px solid #222;
     }
 
-    instant-pricing .package-card h3 {
+    #instant-pricing .package-card h3 {
       font-size: 1.8rem;
       color: var(--brand-color);
       margin-bottom: 1rem;
     }
 
-    instant-pricing .package-card .price {
+    #instant-pricing .package-card .price {
       font-size: 2.5rem;
       font-weight: bold;
       color: var(--text-light);
       margin-bottom: 1.5rem;
     }
 
-    instant-pricing .package-card .price span {
+    #instant-pricing .package-card .price span {
       font-size: 1rem;
       font-weight: normal;
       color: var(--text-muted);
     }
 
-    instant-pricing .package-card ul {
+    #instant-pricing .package-card ul {
       list-style: none;
       text-align: left;
       margin-bottom: 2rem;
       padding-left: 0;
     }
 
-    instant-pricing .package-card ul li {
+    #instant-pricing .package-card ul li {
       margin-bottom: 0.5rem;
       color: var(--text-muted);
     }
 
-    instant-pricing .package-card ul li::before {
+    #instant-pricing .package-card ul li::before {
       content: '✓';
       color: var(--brand-color);
       margin-right: 0.5rem;
     }
 
-    instant-pricing .purchase-button {
+    #instant-pricing .purchase-button {
       background: var(--brand-color);
       color: white;
       padding: 1rem 2rem;
@@ -504,8 +504,8 @@
       width: 100%;
     }
 
-    instant-pricing .purchase-button:hover {
-      background: e00000;
+    #instant-pricing .purchase-button:hover {
+      background: #e00000;
       transform: translateY(-2px);
     }
 
@@ -565,7 +565,7 @@
       height: auto;
     }
 
-    faq h2 {
+    #faq h2 {
       color: var(--brand-color);
     }
 
@@ -645,26 +645,26 @@
 
     /* --- End of Flip Card FAQ Styles --- */
 
-    contact h2 {
+    #contact h2 {
       color: var(--brand-color);
     }
 
-    contact .contact-info {
+    #contact .contact-info {
       font-size: 1rem;
       margin-top: 1rem;
     }
 
-    contact .contact-link {
+    #contact .contact-link {
       color: var(--brand-color);
       text-decoration: none;
     }
 
-    contact .contact-link:hover {
+    #contact .contact-link:hover {
       text-decoration: underline;
       color: var(--text-light);
     }
 
-    ai-assistant h2 {
+    #ai-assistant h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: var(--brand-color);
@@ -682,7 +682,7 @@
       width: 100%;
       padding: 1rem;
       border-radius: 8px;
-      border: 1px solid 333;
+      border: 1px solid #333;
       background: var(--dark-bg);
       color: var(--text-light);
       resize: vertical;
@@ -700,7 +700,7 @@
     }
 
     .ai-form button:hover {
-      background: e00000;
+      background: #e00000;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 59, 59, 0.4);
     }
@@ -728,7 +728,7 @@
       margin: 0 auto;
       overflow: hidden;
       border-radius: 12px;
-      border: 1px solid 222;
+      border: 1px solid #222;
       box-shadow: 0 8px 25px rgba(255, 59, 59, 0.2);
     }
 
@@ -739,7 +739,7 @@
       border: 0;
     }
 
-    floating-call {
+    #floating-call {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
@@ -754,10 +754,10 @@
       z-index: 10000;
     }
 
-    floating-call:hover {
+    #floating-call:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 18px rgba(255, 59, 59, 0.5);
-      background: e00000;
+      background: #e00000;
     }
 
     footer {
@@ -777,6 +777,14 @@
       color: var(--text-light);
     }
 
+  /* Breadcrumb styles (used on inner pages) */
+  .breadcrumb {font-size:.75rem; background: var(--dark-bg); padding:.5rem 1rem; border-bottom:1px solid #111;}
+  .breadcrumb ol {list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; margin:0; padding:0;}
+  .breadcrumb li {color: var(--text-muted); display:flex; align-items:center; gap:.4rem;}
+  .breadcrumb li+li:before {content:"›"; color:#555;}
+  .breadcrumb a {color: var(--brand-color); text-decoration:none;}
+  .breadcrumb a:hover {text-decoration:underline; color: var(--text-light);}
+
     @media (max-width: 768px) {
       header {
         padding: 1rem;
@@ -787,7 +795,7 @@
       }
 
       h2,
-      ai-assistant h2 {
+      #ai-assistant h2 {
         font-size: 2rem;
       }
 
@@ -812,7 +820,7 @@
         padding: 3.5rem 1.5rem;
       }
 
-      hoursPopup {
+      #hoursPopup {
         font-size: 0.8rem;
         right: 5px;
         top: 120%;
@@ -848,6 +856,20 @@
       }
     }
   </style>
+  <!-- Added aggregate rating & reviews JSON-LD (kept separate to avoid impacting existing org script) -->
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "@id":"https://dependablepainting.work/#organization",
+    "name":"Dependable Painting",
+    "url":"https://dependablepainting.work/",
+    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"25"},
+    "review":[
+      {"@type":"Review","reviewBody":"Dependable Painting did an outstanding job on our exterior. Professional, efficient, and the results are amazing!","author":{"@type":"Person","name":"John D."},"reviewRating":{"@type":"Rating","ratingValue":"5"}},
+      {"@type":"Review","reviewBody":"Our kitchen cabinets look brand new! Meticulous prep and a flawless finish.","author":{"@type":"Person","name":"Sarah L."},"reviewRating":{"@type":"Rating","ratingValue":"5"}},
+      {"@type":"Review","reviewBody":"Great experience from start to finish – responsive, detailed, and exceeded expectations.","author":{"@type":"Person","name":"Michael P."},"reviewRating":{"@type":"Rating","ratingValue":"5"}}
+    ]
+  }</script>
 </head>
 
 <body>
@@ -864,7 +886,7 @@
     </div>
     <div class="nav-icons">
       <div class="hours-toggle">
-        <a href="" title="Business Hours" aria-label="Business Hours"
+        <a href="#" title="Business Hours" aria-label="Business Hours"
           onclick="event.preventDefault(); toggleHoursPopup();">
           <i class="fas fa-clock"></i>
         </a>
@@ -889,7 +911,7 @@
     <div class="close-btn" onclick="toggleMenu()" aria-label="Close menu">×</div>
     <a href="/">Home</a>
     <a href="about.html">About Us</a>
-    <a href="" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
+    <a href="#" onclick="event.preventDefault(); toggleSubMenu();">Services ▾</a>
     <div class="submenu" id="submenu">
       <a href="interior-painting.html">Interior Painting</a>
       <a href="exterior-painting.html">Exterior Painting</a>
@@ -897,9 +919,9 @@
       <a href="commercial-painting.html">Commercial Painting</a>
       <a href="wood-siding.html">Wood Siding</a>
     </div>
-    <a href="instant-pricing">Instant Pricing</a>
+    <a href="#instant-pricing">Instant Pricing</a>
     <a href="/contact-form.html">Contact</a>
-    <a href="gallery">Gallery</a>
+    <a href="#gallery">Gallery</a>
     <a href="privacy.html">Privacy Policy</a>
   </nav>
 
@@ -1196,7 +1218,7 @@
       const responseDiv = document.getElementById('ai-response');
 
       // --- FAQ Flip Logic ---
-      const faqCards = document.querySelectorAll('faq .faq-card');
+      const faqCards = document.querySelectorAll('#faq .faq-card');
       faqCards.forEach(card => {
         card.setAttribute('aria-pressed', 'false');
         const flip = () => {
@@ -1304,14 +1326,55 @@
         yearSpan.textContent = new Date().getFullYear();
       }
     });
-  </script>
-  <script src="/analytics.js"></script>
-  <script src="/paint-guru.js"></script>
-  <script src="/api/contact-form.js"></script>
-  <script>
-    // If you add a contact form to this page, enable the handler:
-    // submitContactForm('contact-form');
-    // Paint Guru chat can be used via window.paintGuru.send(message)
+
+    // --- Analytics Tracking ---
+    (function () {
+      var sid = localStorage.getItem('dp_sid');
+      if (!sid) { sid = 's_' + Math.random().toString(36).slice(2, 10); localStorage.setItem('dp_sid', sid); }
+      var PAGE = location.pathname || '/';
+      var SVC = (p => {
+        p = (p || '').toLowerCase();
+        if (p.includes('exterior')) return 'exterior';
+        if (p.includes('interior')) return 'interior';
+        if (p.includes('cabinet')) return 'cabinets';
+        if (p.includes('commercial')) return 'commercial';
+        return 'other';
+      })(PAGE);
+
+      function send(type, extra) {
+        var U = new URLSearchParams(location.search);
+        var utm = {
+          source: sessionStorage.getItem('utm_source') || U.get('utm_source') || '',
+          medium: sessionStorage.getItem('utm_medium') || U.get('utm_medium') || '',
+          campaign: sessionStorage.getItem('utm_campaign') || U.get('utm_campaign') || ''
+        };
+        var gclid = sessionStorage.getItem('gclid') || U.get('gclid') || '';
+        if (utm.source) sessionStorage.setItem('utm_source', utm.source);
+        if (utm.medium) sessionStorage.setItem('utm_medium', utm.medium);
+        if (utm.campaign) sessionStorage.setItem('utm_campaign', utm.campaign);
+        if (gclid) sessionStorage.setItem('gclid', gclid);
+        var payload = Object.assign({ type: type, page: PAGE, service: SVC, session: sid, utm: utm, gclid: gclid }, extra || {});
+        var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        if (!navigator.sendBeacon || !navigator.sendBeacon('/api/track', blob)) {
+          fetch('/api/track', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => { });
+        }
+      }
+      send('visit');
+      var fired50 = false;
+      window.addEventListener('scroll', function () {
+        if (fired50) return;
+        var sc = (window.scrollY + window.innerHeight) / Math.max(document.body.scrollHeight, 1) * 100;
+        if (sc >= 50) { fired50 = true; send('scroll', { scroll_pct: 50 }); }
+      }, { passive: true });
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+        if (a) { send('click_call'); }
+      });
+      var t0 = performance.now();
+      window.addEventListener('pagehide', function () {
+        send('visit', { duration_ms: Math.round(performance.now() - t0) });
+      });
+    })();
   </script>
 </body>
 

@@ -15,20 +15,14 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Painting Packages | Dependable Painting</title>
-    <link
-      rel="canonical"
-      href="https://dependablepainting.work/packages.html"
-    />
+  <title>Painting Packages & Booking | Dependable Painting</title>
+  <link rel="canonical" href="https://dependablepainting.work/payments.html" />
     <link
       rel="icon"
       type="image/png"
       href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512"
     />
-    <meta
-      name="description"
-      content="Choose from our pre-priced painting packages for a simple, fast, and professional painting experience in Baldwin & Mobile County, AL."
-    />
+  <meta name="description" content="Instant interior painting package pricing with options & upgrades. Book walls-only, walls & ceiling, or full room painting and request scheduling today." />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"
       defer
@@ -36,11 +30,11 @@
     ></script>
     <style>
       :root {
-        --brand-color: ff3b3b;
-        --dark-bg: 0a0a0a;
-        --light-bg: 1a1a1a;
-        --text-light: fff;
-        --text-muted: ccc;
+        --brand-color: #ff3b3b;
+        --dark-bg: #0a0a0a;
+        --light-bg: #1a1a1a;
+        --text-light: #fff;
+        --text-muted: #ccc;
       }
 
       *,
@@ -57,7 +51,7 @@
 
       body {
         font-family: Arial, sans-serif;
-        background: 000;
+        background: #000;
         color: var(--text-light);
         line-height: 1.6;
       }
@@ -97,9 +91,13 @@
         color: var(--brand-color);
       }
 
-      main {
-        padding: 4rem 2rem;
-      }
+  main { padding: 4rem 2rem; }
+  nav.breadcrumb {font-size:.75rem; background: var(--dark-bg); padding:.5rem 1rem; border-bottom:1px solid #111;}
+  nav.breadcrumb ol {list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; margin:0; padding:0;}
+  nav.breadcrumb li {color: var(--text-muted); display:flex; align-items:center; gap:.4rem;}
+  nav.breadcrumb li+li:before {content:"›"; color:#555;}
+  nav.breadcrumb a {color: var(--brand-color); text-decoration:none;}
+  nav.breadcrumb a:hover {text-decoration:underline; color:#fff;}
 
       .packages-container {
         max-width: 1200px;
@@ -119,11 +117,7 @@
         margin-bottom: 3rem;
       }
 
-      .packages-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-      }
+  .packages-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:2rem; }
 
       .package-card {
         background: var(--light-bg);
@@ -133,7 +127,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border: 1px solid 222;
+        border: 1px solid #222;
       }
 
       .package-card h2 {
@@ -172,30 +166,44 @@
         margin-right: 0.5rem;
       }
 
-      .purchase-button {
-        background: var(--brand-color);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background 0.3s ease, transform 0.2s ease;
-        display: block;
-        width: 100%;
-      }
+  .purchase-button { background: var(--brand-color); color:#fff; padding: 0.9rem 1.4rem; border-radius:8px; text-decoration:none; font-weight:bold; transition: background .3s ease, transform .2s ease; display:block; width:100%; text-align:center; }
 
       .purchase-button:hover {
-        background: e00000;
+        background: #e00000;
         transform: translateY(-2px);
       }
 
-      footer {
+  .config-section {margin-top:4rem; max-width:1200px; margin-left:auto; margin-right:auto;}
+  .config-layout {display:grid; gap:2.5rem; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); align-items:start;}
+  fieldset {border:1px solid #222; padding:1.5rem 1.25rem 1.75rem; border-radius:14px; background:var(--light-bg);}
+  fieldset legend {padding:0 .5rem; font-weight:bold; color:var(--brand-color);}
+  .option-group {margin-bottom:1rem;}
+  .option-group label {display:flex; justify-content:space-between; gap:.75rem; font-size:.9rem; color:var(--text-muted); cursor:pointer;}
+  .option-group input[type=number] {width:110px; padding:.4rem .6rem; border-radius:6px; border:1px solid #333; background:#121212; color:#fff;}
+  .addon {display:flex; align-items:flex-start; gap:.6rem; margin-bottom:.65rem;}
+  .addon input {margin-top:.2rem;}
+  .price-breakout {font-family:monospace; background:#111; padding:1rem; border:1px solid #222; border-radius:8px; font-size:.85rem; line-height:1.4; max-height:260px; overflow:auto;}
+  .totals {margin-top:1rem; font-size:1.05rem;}
+  .totals strong {color:#fff;}
+  form#booking-form label {display:block; font-size:.8rem; letter-spacing:.5px; text-transform:uppercase; margin-bottom:.35rem; color:var(--brand-color); font-weight:600;}
+  form#booking-form input, form#booking-form select, form#booking-form textarea {width:100%; background:#121212; border:1px solid #333; color:#fff; padding:.65rem .75rem; border-radius:8px; font-size:.95rem; margin-bottom:1rem;}
+  form#booking-form textarea {min-height:110px; resize:vertical;}
+  .submit-btn {background:var(--brand-color); border:none; color:#fff; padding:1rem 1.6rem; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; width:100%; box-shadow:0 6px 18px rgba(255,59,59,.25); transition:.25s ease;}
+  .submit-btn:hover {background:#e00000; transform:translateY(-2px);} 
+  .fine-print {font-size:.7rem; color:#666; margin-top:.75rem; line-height:1.4;}
+  .pill {display:inline-block; background:#181818; padding:.35rem .65rem; font-size:.65rem; border:1px solid #272727; border-radius:999px; letter-spacing:.5px; margin:0 .35rem .35rem 0; color:#bbb;}
+  .flex-row {display:flex; gap:.8rem;}
+  .status-msg {margin-top:.75rem; font-size:.85rem; min-height:1.1rem;}
+  .status-ok {color:#4ade80;}
+  .status-err {color:#fb7185;}
+  @media (max-width:780px){ .price-breakout {max-height:none;} }
+  footer {
         background: var(--dark-bg);
         color: var(--text-muted);
         padding: 2rem;
         text-align: center;
         font-size: 0.9rem;
-        border-top: 1px solid 222;
+        border-top: 1px solid #222;
       }
 
       footer a {
@@ -228,13 +236,15 @@
     </header>
 
     <main>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Packages</li>
+        </ol>
+      </nav>
       <div class="packages-container">
-        <h1>Painting Packages</h1>
-        <p>
-          Simple, upfront pricing for our most popular interior painting
-          services. All packages include high-quality Sherwin-Williams paint and
-          materials.
-        </p>
+        <h1>Interior Painting Packages</h1>
+        <p>Transparent pricing, pro craftsmanship, and fast scheduling. Use the configurator below to build your booking request—no credit card charged online. We'll confirm final scope in a quick call.</p>
         <div class="packages-grid">
           <div class="package-card">
             <div>
@@ -247,9 +257,7 @@
                 <li>Minor drywall repairs included</li>
               </ul>
             </div>
-            <a href="/checkout.html?package=walls_only" class="purchase-button"
-              >Purchase Now</a
-            >
+            <a href="#config" class="purchase-button" data-select-package="walls_only" data-base="400">Select</a>
           </div>
           <div class="package-card">
             <div>
@@ -262,11 +270,7 @@
                 <li>One coat of paint on ceiling</li>
               </ul>
             </div>
-            <a
-              href="/checkout.html?package=walls_ceiling"
-              class="purchase-button"
-              >Purchase Now</a
-            >
+            <a href="#config" class="purchase-button" data-select-package="walls_ceiling" data-base="550">Select</a>
           </div>
           <div class="package-card">
             <div>
@@ -279,12 +283,73 @@
                 <li>Includes baseboards, door & window casings</li>
               </ul>
             </div>
-            <a href="/checkout.html?package=the_works" class="purchase-button"
-              >Purchase Now</a
-            >
+            <a href="#config" class="purchase-button" data-select-package="the_works" data-base="625">Select</a>
           </div>
         </div>
       </div>
+
+      <section id="config" class="config-section" aria-labelledby="config-title">
+        <h2 id="config-title" style="margin:3rem 0 1rem; color:var(--brand-color); font-size:2.1rem;">Configure & Request Booking</h2>
+        <div class="config-layout">
+          <div>
+            <fieldset>
+              <legend>1. Package & Rooms</legend>
+              <div class="option-group">
+                <label>Selected Package <span id="selectedPackageLabel" class="pill">Walls Only</span></label>
+              </div>
+              <div class="option-group">
+                <label for="rooms">Rooms <span style="color:#999">(standard up to 12'x12')</span></label>
+                <input id="rooms" name="rooms" type="number" min="1" max="20" value="1" />
+              </div>
+              <div class="option-group">
+                <label for="height">Ceiling Height</label>
+                <select id="height" name="height">
+                  <option value="8">Up to 8'</option>
+                  <option value="9">9'</option>
+                  <option value="10">10'</option>
+                  <option value="vaulted">Vaulted / Cathedral</option>
+                </select>
+              </div>
+            </fieldset>
+            <fieldset style="margin-top:1.5rem;">
+              <legend>2. Add-Ons</legend>
+              <div class="addon"><input type="checkbox" id="addon-accent" data-add="accent_wall" data-price="85" /><label for="addon-accent">Accent Wall <span class="pill">+$85</span></label></div>
+              <div class="addon"><input type="checkbox" id="addon-trim" data-add="trim_package" data-price="90" /><label for="addon-trim">Upgrade Trim (doors/base) <span class="pill">+$90 / room</span></label></div>
+              <div class="addon"><input type="checkbox" id="addon-prep" data-add="heavy_prep" data-price="65" /><label for="addon-prep">Heavy Surface Prep <span class="pill">+$65 / room</span></label></div>
+              <div class="addon"><input type="checkbox" id="addon-colors" data-add="color_consult" data-price="50" /><label for="addon-colors">Color Consultation <span class="pill">+$50 flat</span></label></div>
+              <div class="addon"><input type="checkbox" id="addon-priority" data-add="priority" data-price="120" /><label for="addon-priority">Priority Scheduling (next available slot) <span class="pill">+$120 flat</span></label></div>
+              <p class="fine-print">Pricing is preliminary and subject to on-site verification (room size, condition, extra repairs, specialty coatings). We confirm before scheduling.</p>
+            </fieldset>
+          </div>
+          <div>
+            <fieldset>
+              <legend>3. Estimate Summary</legend>
+              <div class="price-breakout" id="priceBreakout" aria-live="polite"></div>
+              <div class="totals"><strong>Estimated Total:</strong> <span id="totalPrice">$400</span></div>
+              <div class="fine-print">No online payment. This submits a booking request & lead. We contact you to finalize. Sales tax (if applicable) & unforeseen repairs not included.</div>
+            </fieldset>
+            <fieldset style="margin-top:1.5rem;">
+              <legend>4. Your Info</legend>
+              <form id="booking-form" novalidate>
+                <label for="cust_name">Name</label>
+                <input id="cust_name" name="name" required placeholder="Full Name" />
+                <label for="cust_email">Email</label>
+                <input id="cust_email" name="email" type="email" placeholder="you@example.com" />
+                <label for="cust_phone">Phone <span style="color:#777; font-weight:400;">(one contact method required)</span></label>
+                <input id="cust_phone" name="phone" type="tel" placeholder="(251) 555-1234" />
+                <label for="cust_city">City</label>
+                <input id="cust_city" name="city" required placeholder="e.g. Daphne" />
+                <label for="cust_notes">Project Notes (optional)</label>
+                <textarea id="cust_notes" name="notes" placeholder="Any timing needs, condition details, colors, etc."></textarea>
+                <input type="hidden" id="serviceField" name="service" value="interior-painting" />
+                <input type="hidden" id="messageField" name="message" />
+                <button type="submit" class="submit-btn">Request My Booking & Quote</button>
+                <div class="status-msg" id="statusMsg" aria-live="polite"></div>
+              </form>
+            </fieldset>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -294,8 +359,108 @@
       </p>
     </footer>
     <script>
-      document.getElementById("current-year").textContent =
-        new Date().getFullYear();
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      const basePackages = {
+        walls_only: { label: 'Walls Only', base: 400 },
+        walls_ceiling: { label: 'Walls & Ceiling', base: 550 },
+        the_works: { label: 'The Works', base: 625 }
+      };
+      let selected = 'walls_only';
+      const breakoutEl = document.getElementById('priceBreakout');
+      const totalEl = document.getElementById('totalPrice');
+      const pkgLabel = document.getElementById('selectedPackageLabel');
+      const roomsEl = document.getElementById('rooms');
+      const heightEl = document.getElementById('height');
+      const formEl = document.getElementById('booking-form');
+      const msgEl = document.getElementById('statusMsg');
+      const messageField = document.getElementById('messageField');
+      function currency(n){return '$' + n.toFixed(0);} // Round for simplicity
+      function calc(){
+        const pkg = basePackages[selected];
+        const rooms = Math.min(20, Math.max(1, parseInt(roomsEl.value||'1',10)));
+        let lines = [];
+        let total = 0;
+        const roomBase = pkg.base * rooms;
+        total += roomBase; lines.push(`${pkg.label} x ${rooms} room(s): ${currency(roomBase)}`);
+        // Ceiling height adjustments
+        const h = heightEl.value;
+        if(h==='9'){ const adj = 35*rooms; total+=adj; lines.push(`9' ceilings adj: ${currency(adj)}`);} 
+        else if(h==='10'){ const adj = 55*rooms; total+=adj; lines.push(`10' ceilings adj: ${currency(adj)}`);} 
+        else if(h==='vaulted'){ const adj = 110*rooms; total+=adj; lines.push(`Vaulted/cathedral adj: ${currency(adj)}`);} 
+        const addons = document.querySelectorAll('[data-add][type=checkbox]:checked');
+        addons.forEach(cb=>{
+          const key = cb.getAttribute('data-add');
+          const price = parseInt(cb.getAttribute('data-price'),10)||0;
+          let lineTotal = price;
+            if(['trim_package','heavy_prep'].includes(key)) lineTotal = price * rooms;
+          total += lineTotal;
+          const label = cb.nextElementSibling?.textContent.trim().replace(/\s*\+\$.+$/,'');
+          lines.push(`${label}: ${currency(lineTotal)}`);
+        });
+        lines.push('—');
+        lines.push(`Estimated Total: ${currency(total)}`);
+        breakoutEl.textContent = lines.join('\n');
+        totalEl.textContent = currency(total);
+        // Prepare message summarizing selection
+        const summary = {
+          package: pkg.label,
+          rooms,
+          ceiling: h,
+          addons: Array.from(addons).map(cb=>cb.getAttribute('data-add')),
+          est_total: total,
+          notes: (document.getElementById('cust_notes')||{}).value||''
+        };
+        messageField.value = 'PACKAGE_REQUEST ' + JSON.stringify(summary);
+      }
+      calc();
+      document.querySelectorAll('[data-select-package]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          selected = a.getAttribute('data-select-package');
+          pkgLabel.textContent = basePackages[selected].label;
+          calc();
+          document.getElementById('config').scrollIntoView({behavior:'smooth'});
+        });
+      });
+      [roomsEl, heightEl].forEach(el=> el.addEventListener('input', calc));
+      document.querySelectorAll('[data-add]').forEach(cb=> cb.addEventListener('change', calc));
+      (document.getElementById('cust_notes')||{}).addEventListener?.('input', calc);
+      formEl.addEventListener('submit', async (e)=>{
+        e.preventDefault(); msgEl.textContent=''; msgEl.className='status-msg';
+        const name = formEl.name.value.trim();
+        const city = formEl.city.value.trim();
+        const email = formEl.email.value.trim();
+        const phone = formEl.phone.value.trim();
+        if(!name || !city || (!email && !phone)){ msgEl.textContent='Name, City and either Email or Phone required.'; msgEl.classList.add('status-err'); return; }
+        calc();
+        const payload = {
+          name,
+            email,
+            phone,
+            city,
+            service: 'interior-painting',
+            message: messageField.value
+        };
+        const btn = formEl.querySelector('button');
+        btn.disabled = true; btn.textContent='Submitting...';
+        try {
+          const r = await fetch('/api/estimate', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)});
+          if(r.ok){ window.location.href='/thank-you'; return; }
+          const j = await r.json().catch(()=>({}));
+          msgEl.textContent = j.error || 'Submission failed'; msgEl.classList.add('status-err');
+        } catch(err){ msgEl.textContent='Network error.'; msgEl.classList.add('status-err'); }
+        finally { btn.disabled=false; btn.textContent='Request My Booking & Quote'; }
+      });
     </script>
+    <script type="application/ld+json">{
+      "@context":"https://schema.org",
+      "@type":"ItemList",
+      "name":"Interior Painting Packages",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"item":{"@type":"Product","name":"Walls Only Room Painting","description":"Two coats on walls up to 12'x12' standard height.","offers":{"@type":"Offer","price":"400","priceCurrency":"USD"}}},
+        {"@type":"ListItem","position":2,"item":{"@type":"Product","name":"Walls & Ceiling Room Painting","description":"Walls (2 coats) plus ceiling (1 coat).","offers":{"@type":"Offer","price":"550","priceCurrency":"USD"}}},
+        {"@type":"ListItem","position":3,"item":{"@type":"Product","name":"Full Room Paint (Walls, Ceiling, Trim)","description":"Complete finish including trim & baseboards.","offers":{"@type":"Offer","price":"625","priceCurrency":"USD"}}}
+      ]
+    }</script>
   </body>
 </html>

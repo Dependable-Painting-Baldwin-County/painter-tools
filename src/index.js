@@ -1,5 +1,8 @@
 import { Hono } from 'hono';
 import { serveStatic } from 'hono/cloudflare-workers';
+// Cloudflare Email (only if bound) — safe optional import
+// eslint-disable-next-line import/no-unresolved
+import { EmailMessage } from 'cloudflare:email';
 const app = new Hono();
 // Contact/lead form
 app.post('/api/estimate', async (c) => {
@@ -15,11 +18,13 @@ app.post('/api/estimate', async (c) => {
 		email: (body.email || '').trim(),
 		phone: (body.phone || '').trim(),
 		city: (body.city || '').trim(),
+		zip: (body.zip || '').trim(),
 		service: (body.service || '').trim(),
 		message: (body.description || body.message || '').trim(),
 		page: (body.page || '/contact-form').trim(),
 		session: (body.session || '').trim(),
 		source: body.source || 'web',
+		// Extra attribution fields (not stored directly in leads table). If needed later, create a leads_meta table.
 		utm_source: body.utm_source || '',
 		utm_medium: body.utm_medium || '',
 		utm_campaign: body.utm_campaign || '',
@@ -30,26 +35,22 @@ app.post('/api/estimate', async (c) => {
 	if (!leadData.name || !leadData.city || !leadData.service || !leadData.message || (!leadData.phone && !leadData.email)) {
 		return c.json({ error: 'Missing required fields.' }, 400);
 	}
-	// Insert into DB
+	// Insert into DB (match schema in 0001_leads.sql)
 	try {
 		await env.DB.prepare(
-			`INSERT INTO leads (name, email, phone, service, message, source, utm_source, utm_medium, utm_campaign, gclid, page, session, ip, ua)
-			 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+			`INSERT INTO leads (name, email, phone, city, zip, service, page, session, source, message)
+			 VALUES (?,?,?,?,?,?,?,?,?,?)`
 		).bind(
 			leadData.name,
 			leadData.email,
 			leadData.phone,
+			leadData.city,
+			leadData.zip,
 			leadData.service,
-			leadData.message,
-			leadData.source,
-			leadData.utm_source,
-			leadData.utm_medium,
-			leadData.utm_campaign,
-			leadData.gclid,
 			leadData.page,
 			leadData.session,
-			leadData.ip,
-			leadData.ua
+			leadData.source,
+			leadData.message
 		).run();
 	} catch (e) {
 		return c.json({ error: 'Database operation failed.' }, 500);
@@ -59,15 +60,15 @@ app.post('/api/estimate', async (c) => {
 		if (env.SEB && env.SEB.send) {
 			const subject = `New Lead: ${leadData.service || 'General'} — ${leadData.name || 'Unknown'}`;
 			const text = [
-				`You have a new lead from your website contact form!`,
-				`--------------------------------`,
+				'You have a new lead from your website contact form!',
+				'--------------------------------',
 				`Name: ${leadData.name || '-'}`,
 				`Email: ${leadData.email || '-'}`,
 				`Phone: ${leadData.phone || '-'}`,
 				`City: ${leadData.city || '-'}`,
 				`Service of Interest: ${leadData.service || '-'}`,
 				`Message: ${leadData.message || '-'}`,
-				`--------------------------------`,
+				'--------------------------------',
 				`Submitted from page: ${leadData.page || '-'}`,
 				`UTM Source: ${leadData.utm_source || '-'}`,
 				`Session ID: ${leadData.session || '-'}`,
@@ -76,17 +77,18 @@ app.post('/api/estimate', async (c) => {
 			].join('\n');
 			const from = env.FROM_ADDR || 'no-reply@dependablepainting.work';
 			const to = env.ADMIN_EMAIL || env.OWNER_EMAIL || env.TO_ADDR || 'just-paint-it@dependablepainting.work';
-			const msg = new EmailMessage(from, to, subject);
-			msg.setBody('text/plain', text);
-			await env.SEB.send({
-				personalizations: [{ to: [{ email: env.DESTINATION }] }],
-				from: { email: env.SENDER, name: env.SITE_NAME || "Dependable Painting" },
-				subject: "New Lead Submission",
-				content: [{ type: "text/plain", value: emailBody }]
-			});
+			try {
+				const msg = new EmailMessage(from, to, subject);
+				msg.setBody('text/plain', text);
+				await env.SEB.send(msg);
+			} catch (inner) {
+				// Fallback: attempt JSON payload (if binding expects raw API style)
+				try { await env.SEB.send({ from, to, subject, content: text }); } catch (_) { /* swallow */ }
+			}
 		}
 	} catch (e) {
 		// Log but do not fail the request
+		console.warn('Admin email send failed', e); // eslint-disable-line no-console
 	}
 	// Auto-reply to customer
 	try {
@@ -94,18 +96,18 @@ app.post('/api/estimate', async (c) => {
 		if (to && env.SEB && env.SEB.send) {
 			const subject = `Thanks for contacting ${env.SITE_NAME || 'Dependable Painting'}`;
 			const html = `<p>Hi ${leadData.name || 'there'},</p><p>We received your request and will be in touch within the hour.</p><p>If you need us now, call <strong>(251) 525-4405</strong>.</p><p>— ${env.SITE_NAME || 'Dependable Painting'}</p>`;
-			const from = `${env.SITE_NAME || 'Dependable Painting'} <${env.FROM_ADDR || 'no-reply@dependablepainting.work'}>`;
-			const msg = new EmailMessage(env.FROM_ADDR || 'no-reply@dependablepainting.work', to, subject);
-			msg.setBody('text/html', html);
-			await env.SEB.send({
-				personalizations: [{ to: [{ email: lead.email }] }],
-				from: { email: env.SENDER, name: env.SITE_NAME || "Dependable Painting" },
-				subject: "Thank you for contacting us!",
-				content: [{ type: "text/plain", value: autoReplyBody }]
-			});
+			const fromAddr = env.FROM_ADDR || 'no-reply@dependablepainting.work';
+			try {
+				const msg = new EmailMessage(fromAddr, to, subject);
+				msg.setBody('text/html', html);
+				await env.SEB.send(msg);
+			} catch (inner) {
+				try { await env.SEB.send({ from: fromAddr, to, subject, html }); } catch (_) { /* swallow */ }
+			}
 		}
 	} catch (e) {
 		// Log but do not fail the request
+		console.warn('Auto-reply email send failed', e); // eslint-disable-line no-console
 	}
 	// Thank you redirect
 	return c.json({ success: true, redirect: env.THANK_YOU_URL || '/thank-you' });
@@ -215,20 +217,84 @@ app.post('/api/track', async (c) => {
 	} catch (e) {
 		return c.json({ error: 'Invalid JSON' }, 400);
 	}
-	// Store event in D1 (and DB_2 if available)
-	const eventFields = [
-		'type', 'page', 'service', 'source', 'device', 'city', 'country', 'session', 'referrer',
-		'utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'scroll_pct', 'clicks', 'call', 'duration_ms', 'button', 'zip', 'area'
-	];
-	const values = eventFields.map(f => body[f] ?? '');
+	// Normalize & map to lead_events schema (0001_leads.sql)
+	const now = new Date();
+	const iso = now.toISOString();
+	const day = iso.slice(0, 10); // YYYY-MM-DD
+	const hour = iso.slice(11, 13); // HH
+	const record = {
+		// required
+		type: (body.type || 'event').toString().slice(0, 50),
+		// optional mapped fields
+		page: body.page || '',
+		service: body.service || '',
+		source: body.source || '',
+		device: body.device || '',
+		city: body.city || '',
+		country: body.country || '',
+		zip: body.zip || '',
+		area: body.area || '',
+		session: body.session || '',
+		scroll_pct: Number.isFinite(Number(body.scroll_pct)) ? Number(body.scroll_pct) : 0,
+		duration_ms: Number.isFinite(Number(body.duration_ms)) ? Number(body.duration_ms) : 0,
+		referrer: body.referrer || '',
+		utm_source: body.utm_source || '',
+		utm_medium: body.utm_medium || '',
+		utm_campaign: body.utm_campaign || '',
+		gclid: body.gclid || ''
+	};
 	try {
 		await env.DB.prepare(
-			`INSERT INTO events (ts, ${eventFields.join(', ')}) VALUES (strftime('%Y-%m-%dT%H:%M:%fZ','now'), ${eventFields.map(() => '?').join(', ')})`
-		).bind(...values).run();
+			`INSERT INTO lead_events (ts, day, hour, type, page, service, source, device, city, country, zip, area, session, scroll_pct, duration_ms, referrer, utm_source, utm_medium, utm_campaign, gclid)
+			 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+		).bind(
+			iso,
+			day,
+			hour,
+			record.type,
+			record.page,
+			record.service,
+			record.source,
+			record.device,
+			record.city,
+			record.country,
+			record.zip,
+			record.area,
+			record.session,
+			record.scroll_pct,
+			record.duration_ms,
+			record.referrer,
+			record.utm_source,
+			record.utm_medium,
+			record.utm_campaign,
+			record.gclid
+		).run();
 		if (env.DB_2) {
 			await env.DB_2.prepare(
-				`INSERT INTO events (ts, ${eventFields.join(', ')}) VALUES (strftime('%Y-%m-%dT%H:%M:%fZ','now'), ${eventFields.map(() => '?').join(', ')})`
-			).bind(...values).run();
+				`INSERT INTO lead_events (ts, day, hour, type, page, service, source, device, city, country, zip, area, session, scroll_pct, duration_ms, referrer, utm_source, utm_medium, utm_campaign, gclid)
+				 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+			).bind(
+				iso,
+				day,
+				hour,
+				record.type,
+				record.page,
+				record.service,
+				record.source,
+				record.device,
+				record.city,
+				record.country,
+				record.zip,
+				record.area,
+				record.session,
+				record.scroll_pct,
+				record.duration_ms,
+				record.referrer,
+				record.utm_source,
+				record.utm_medium,
+				record.utm_campaign,
+				record.gclid
+			).run();
 		}
 	} catch (e) {
 		return c.json({ error: 'Database operation failed.' }, 500);
@@ -238,17 +304,14 @@ app.post('/api/track', async (c) => {
 	const api_secret = env.GA4_API_SECRET || '';
 	const client_id = body.session || crypto.randomUUID();
 	const ga4Params = {
-		page_location: body.page || 'https://dependablepainting.work',
-		page_referrer: body.referrer || '',
-		session_id: body.session || '',
-		engagement_time_msec: body.duration_ms ? String(body.duration_ms) : undefined,
-		scroll_pct: body.scroll_pct,
-		clicks: body.clicks,
-		call: body.call,
-		city: body.city,
-		button: body.button,
-		zip: body.zip,
-		area: body.area
+		page_location: record.page || 'https://dependablepainting.work',
+		page_referrer: record.referrer || '',
+		session_id: record.session || '',
+		engagement_time_msec: record.duration_ms ? String(record.duration_ms) : undefined,
+		scroll_pct: record.scroll_pct,
+		city: record.city,
+		zip: record.zip,
+		area: record.area
 	};
 	Object.keys(ga4Params).forEach(k => ga4Params[k] === undefined && delete ga4Params[k]);
 	const ga4Payload = {
@@ -319,30 +382,7 @@ app.get('/api/geo/classify', async (c) => {
 app.get('/api/health', (c) => c.json({ ok: true, ts: Date.now() }));
 
 // Serve static assets from the public directory (fallback)
-app.use('*', serveStatic({ root: './' }));
+app.use('*', serveStatic({ root: './public' }));
 
-export default app;events(
-  id, INTEGER, PRIMARY, KEY, AUTOINCREMENT,
-  ts, TEXT,
-  type, TEXT,
-  page, TEXT,
-  service, TEXT,
-  source, TEXT,
-  device, TEXT,
-  city, TEXT,
-  country, TEXT,
-  session, TEXT,
-  referrer, TEXT,
-  utm_source, TEXT,
-  utm_medium, TEXT,
-  utm_campaign, TEXT,
-  gclid, TEXT,
-  scroll_pct, TEXT,
-  clicks, TEXT,
-  call, TEXT,
-  duration_ms, TEXT,
-  button, TEXT,
-  zip, TEXT,
-  area, TEXT
-);
+export default app;
 
