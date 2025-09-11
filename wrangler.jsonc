@@ -1,16 +1,15 @@
 {
-		"name": "painter-tools",
+	"name": "painter-tools",
 	"main": "src/index.js",
 	"compatibility_date": "2025-08-29",
-	"assets": {
-		"directory": "./public"
-	},
-		"routes": [
-			{ "pattern": "dependablepainting.work", "custom_domain": true }
-		],
-	"observability": {
-		"enabled": true
-	},
+	// Directory for static assets served via app.use('*', serveStatic())
+	"assets": { "directory": "./public" },
+	// D1 migrations directory for wrangler d1 migrations apply
+	"migrations_dir": "migrations",
+	"routes": [
+		{ "pattern": "dependablepainting.work", "custom_domain": true }
+	],
+	"observability": { "enabled": true },
 	"d1_databases": [
 		{ "binding": "DB", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76" },
 		{ "binding": "DB_2", "database_id": "419dd6ec-30a5-4b12-a895-65ab985aaf2f" }
@@ -39,12 +38,14 @@
 		{ "binding": "VECTORIZE", "index_name": "autorag-painter-rags" }
 	],
 	"ai": { "binding": "AI" },
-		"r2_buckets": [
-			{ "binding": "PAINT_BUCKET", "bucket_name": "paint-bucket" }
-		],
+	"r2_buckets": [
+		{ "binding": "PAINT_BUCKET", "bucket_name": "paint-bucket" }
+	],
 	"vars": {
 		"DESTINATION": "alexdimmler@dependablepainting.work",
-		"SENDER": "no-reply@dependablepainting.work"
-		}
-		// "services": []
+		"SENDER": "no-reply@dependablepainting.work",
+		// Allows runtime code to know environment (dev vs prod) if needed
+		"ENVIRONMENT": "development"
+	}
+	// "services": []
 }

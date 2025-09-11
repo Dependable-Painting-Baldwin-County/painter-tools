@@ -53,6 +53,7 @@ app.post('/api/estimate', async (c) => {
 			leadData.message
 		).run();
 	} catch (e) {
+		console.error('D1 insert leads failed', e); // eslint-disable-line no-console
 		return c.json({ error: 'Database operation failed.' }, 500);
 	}
 	// Notify admin (simple email)
@@ -297,6 +298,7 @@ app.post('/api/track', async (c) => {
 			).run();
 		}
 	} catch (e) {
+		console.error('D1 insert lead_events failed', e); // eslint-disable-line no-console
 		return c.json({ error: 'Database operation failed.' }, 500);
 	}
 	// Forward to GA4

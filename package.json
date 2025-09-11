@@ -1,20 +1,20 @@
 {
 	"name": "painter-tools",
 	"private": true,
-  "scripts": {
-    "start": "wrangler dev",
-    "dev": "wrangler dev",
-    "dev:port": "wrangler dev --port 8787",
-    "deploy": "wrangler deploy",
-    "preview": "wrangler dev --remote",
-    "types": "wrangler types --env-interface CloudflareBindings"
-  },
-  "dependencies": {
-    "hono": "^4.9.4",
-    "swiper": "^11.2.10"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240821.0",
-    "wrangler": "^4.33.1"
-  }
+	"scripts": {
+		"start": "wrangler dev",
+		"dev": "wrangler dev",
+		"dev:port": "wrangler dev --port 8787",
+		"deploy": "wrangler deploy",
+		"preview": "wrangler dev --remote",
+		"types": "wrangler types --env-interface CloudflareBindings"
+	},
+	"dependencies": {
+		"hono": "^4.9.6",
+		"swiper": "^11.2.10"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240821.0",
+		"wrangler": "^4.35.0"
+	}
 }
