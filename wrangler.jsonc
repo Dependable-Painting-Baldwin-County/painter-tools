@@ -4,8 +4,7 @@
 	"compatibility_date": "2025-08-29",
 	// Directory for static assets served via app.use('*', serveStatic())
 	"assets": { "directory": "./public" },
-	// D1 migrations directory for wrangler d1 migrations apply
-	"migrations_dir": "migrations",
+	// (Removed migrations_dir: wrangler auto-detects ./migrations)
 	"routes": [
 		{ "pattern": "dependablepainting.work", "custom_domain": true }
 	],
