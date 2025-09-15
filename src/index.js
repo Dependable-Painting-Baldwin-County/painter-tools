@@ -142,18 +142,23 @@ app.post('/api/chat', async (c) => {
 	let aiProvider = '';
 	try {
 		if (env.AI) {
-			// Workers AI (Claude, Llama, etc.)
-			const aiResp = await env.AI.run({
-				messages: [
-					{ role: 'system', content: systemPrompt },
-					{ role: 'user', content: userMsg }
-				],
-				model: env.AI_MODEL || 'gpt-4o',
-				max_tokens: 512,
-				temperature: env.AI_TEMP ? Number(env.AI_TEMP) : 0.3
-			});
-			reply = aiResp.choices?.[0]?.message?.content || '';
-			aiProvider = 'workers-ai';
+			// Workers AI (Llama, etc.)
+			try {
+				const aiResp = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+					messages: [
+						{ role: 'system', content: systemPrompt },
+						{ role: 'user', content: userMsg }
+					],
+					max_tokens: 512,
+					temperature: env.AI_TEMP ? Number(env.AI_TEMP) : 0.3
+				});
+				reply = aiResp.response || '';
+				aiProvider = 'workers-ai';
+			} catch (aiError) {
+				// If AI fails (e.g., not logged in), fall back to local responses
+				console.warn('Workers AI failed, falling back to local responses:', aiError.message);
+				throw new Error('ai_fallback');
+			}
 		} else if (env.OPENAI_API_KEY) {
 			// OpenAI API fallback
 			const resp = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -180,7 +185,24 @@ app.post('/api/chat', async (c) => {
 			reply = data?.choices?.[0]?.message?.content || '';
 			aiProvider = 'openai';
 		} else {
-			return c.json({ error: 'No AI provider configured' }, 500);
+			// Development fallback when no AI provider is configured
+			const lowerMsg = userMsg.toLowerCase();
+			if (lowerMsg.includes('paint') && (lowerMsg.includes('type') || lowerMsg.includes('kind') || lowerMsg.includes('brand'))) {
+				reply = 'We primarily use high-quality Sherwin-Williams paints for all our projects. Sherwin-Williams offers excellent durability, coverage, and color selection. For exterior surfaces, we recommend their Duration or SuperPaint lines which provide superior weather resistance and long-lasting protection.';
+			} else if (lowerMsg.includes('exterior') && lowerMsg.includes('paint')) {
+				reply = 'For exterior painting, we use premium weather-resistant paints like Sherwin-Williams Duration or SuperPaint. These provide excellent protection against Alabama\'s humid climate, UV rays, and temperature changes. We also ensure proper surface preparation including pressure washing, scraping, priming, and caulking for the best results.';
+			} else if (lowerMsg.includes('interior') && lowerMsg.includes('paint')) {
+				reply = 'For interior painting, we use high-quality Sherwin-Williams paints like ProClassic for trim and SuperPaint for walls. These provide smooth application, excellent coverage, and durability. We offer various finishes from flat to semi-gloss depending on the room and your preferences.';
+			} else if (lowerMsg.includes('cabinet')) {
+				reply = 'Cabinet painting requires specialized techniques and products. We use Sherwin-Williams ProClassic or Emerald Urethane for cabinets, which provide a smooth, durable finish that resists chips and scratches. The process includes thorough cleaning, sanding, priming, and multiple thin coats for a factory-like finish.';
+			} else if (lowerMsg.includes('cost') || lowerMsg.includes('price') || lowerMsg.includes('estimate')) {
+				reply = 'Pricing varies based on the size, condition, and complexity of your project. For standard interior rooms, we offer packages starting at $400. For accurate pricing, I recommend getting a free estimate by calling (251) 525-4405 or using our contact form. We provide detailed, transparent quotes with no hidden fees.';
+			} else if (lowerMsg.includes('area') || lowerMsg.includes('service') || lowerMsg.includes('location')) {
+				reply = 'We proudly serve Baldwin and Mobile Counties in Alabama, including Fairhope, Daphne, Spanish Fort, Mobile, and Bay Minette. We do not service Gulf Shores or Orange Beach for residential projects. Call (251) 525-4405 to confirm we serve your specific area.';
+			} else {
+				reply = 'I\'m here to help with questions about painting services, materials, processes, and our service areas. For specific quotes or scheduling, please call (251) 525-4405 or use our contact form. What specific painting question can I help you with?';
+			}
+			aiProvider = 'fallback';
 		}
 		// Log chat to D1
 		try {
@@ -199,7 +221,46 @@ app.post('/api/chat', async (c) => {
 		}
 		return c.json({ reply });
 	} catch (e) {
-		return c.json({ error: `ai_fail:${e.message}` }, 502);
+		if (e.message === 'ai_fallback') {
+			// Use development fallback when AI services fail
+			const lowerMsg = userMsg.toLowerCase();
+			if (lowerMsg.includes('paint') && (lowerMsg.includes('type') || lowerMsg.includes('kind') || lowerMsg.includes('brand'))) {
+				reply = 'We primarily use high-quality Sherwin-Williams paints for all our projects. Sherwin-Williams offers excellent durability, coverage, and color selection. For exterior surfaces, we recommend their Duration or SuperPaint lines which provide superior weather resistance and long-lasting protection.';
+			} else if (lowerMsg.includes('exterior') && lowerMsg.includes('paint')) {
+				reply = 'For exterior painting, we use premium weather-resistant paints like Sherwin-Williams Duration or SuperPaint. These provide excellent protection against Alabama\'s humid climate, UV rays, and temperature changes. We also ensure proper surface preparation including pressure washing, scraping, priming, and caulking for the best results.';
+			} else if (lowerMsg.includes('interior') && lowerMsg.includes('paint')) {
+				reply = 'For interior painting, we use high-quality Sherwin-Williams paints like ProClassic for trim and SuperPaint for walls. These provide smooth application, excellent coverage, and durability. We offer various finishes from flat to semi-gloss depending on the room and your preferences.';
+			} else if (lowerMsg.includes('cabinet')) {
+				reply = 'Cabinet painting requires specialized techniques and products. We use Sherwin-Williams ProClassic or Emerald Urethane for cabinets, which provide a smooth, durable finish that resists chips and scratches. The process includes thorough cleaning, sanding, priming, and multiple thin coats for a factory-like finish.';
+			} else if (lowerMsg.includes('cost') || lowerMsg.includes('price') || lowerMsg.includes('estimate')) {
+				reply = 'Pricing varies based on the size, condition, and complexity of your project. For standard interior rooms, we offer packages starting at $400. For accurate pricing, I recommend getting a free estimate by calling (251) 525-4405 or using our contact form. We provide detailed, transparent quotes with no hidden fees.';
+			} else if (lowerMsg.includes('area') || lowerMsg.includes('service') || lowerMsg.includes('location')) {
+				reply = 'We proudly serve Baldwin and Mobile Counties in Alabama, including Fairhope, Daphne, Spanish Fort, Mobile, and Bay Minette. We do not service Gulf Shores or Orange Beach for residential projects. Call (251) 525-4405 to confirm we serve your specific area.';
+			} else {
+				reply = 'I\'m here to help with questions about painting services, materials, processes, and our service areas. For specific quotes or scheduling, please call (251) 525-4405 or use our contact form. What specific painting question can I help you with?';
+			}
+			aiProvider = 'fallback';
+			
+			// Log chat to D1 
+			try {
+				await env.DB.prepare(
+					`INSERT INTO chat_log (ts, session, question, answer, ai_provider, user_agent, page) VALUES (strftime('%Y-%m-%dT%H:%M:%fZ','now'),?,?,?,?,?,?)`
+				).bind(
+					body.session || '',
+					userMsg,
+					reply,
+					aiProvider,
+					c.req.header('User-Agent') || '',
+					body.page || ''
+				).run();
+			} catch (e) {
+				// Log error but do not fail chat
+			}
+			return c.json({ reply });
+		} else {
+			console.error('Chat AI error:', e); // Log the actual error
+			return c.json({ error: `ai_fail:${e.message}` }, 502);
+		}
 	}
 });
 
