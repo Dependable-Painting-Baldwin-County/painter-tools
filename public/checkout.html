@@ -207,6 +207,7 @@
         <p>© <span id="current-year"></span> Dependable Painting</p>
     </footer>
 
+    <script src="/config.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
@@ -223,11 +224,61 @@
         document.getElementById('package-name').textContent = selectedPackage.name;
         document.getElementById('package-price').textContent = `$${selectedPackage.price}`;
 
-        // IMPORTANT: Replace with your actual Stripe publishable key
-        const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY');
-        const elements = stripe.elements();
-        const cardElement = elements.create('card');
-        cardElement.mount('#card-element');
+        // Initialize Stripe with dynamic configuration
+        let stripe, elements, cardElement;
+        
+        function initializeStripe() {
+            if (!window.APP_CONFIG || !window.APP_CONFIG.STRIPE_PUBLISHABLE_KEY) {
+                document.getElementById('card-errors').textContent = 'Payment system not configured. Please contact us at ' + (window.APP_CONFIG?.PHONE || '(251) 525-4405');
+                document.getElementById('submit-button').disabled = true;
+                return;
+            }
+            
+            stripe = Stripe(window.APP_CONFIG.STRIPE_PUBLISHABLE_KEY);
+            elements = stripe.elements();
+            cardElement = elements.create('card', {
+                style: {
+                    base: {
+                        fontSize: '16px',
+                        color: '#fff',
+                        backgroundColor: '#222',
+                        '::placeholder': {
+                            color: '#aaa',
+                        },
+                    },
+                },
+            });
+            cardElement.mount('#card-element');
+            
+            // Add honeypot fields for spam protection
+            const form = document.getElementById('payment-form');
+            
+            // Hidden honeypot field
+            const honeypot = document.createElement('input');
+            honeypot.type = 'text';
+            honeypot.name = 'website';
+            honeypot.style.display = 'none';
+            honeypot.tabIndex = -1;
+            honeypot.autocomplete = 'off';
+            form.appendChild(honeypot);
+            
+            // Timestamp field for timing validation
+            const timestamp = document.createElement('input');
+            timestamp.type = 'hidden';
+            timestamp.name = 'form_timestamp';
+            timestamp.value = Date.now().toString();
+            form.appendChild(timestamp);
+        }
+
+        // Initialize Stripe when config is loaded
+        if (window.APP_CONFIG) {
+            initializeStripe();
+        } else {
+            // Wait for config to load
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(initializeStripe, 100);
+            });
+        }
 
         const form = document.getElementById('payment-form');
         const submitButton = document.getElementById('submit-button');
@@ -235,35 +286,82 @@
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
+            
+            if (!stripe || !cardElement) {
+                cardErrors.textContent = 'Payment system not initialized. Please refresh and try again.';
+                return;
+            }
+            
             submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+            cardErrors.textContent = '';
 
-            const { token, error } = await stripe.createToken(cardElement);
+            try {
+                // Create payment method instead of token (Payment Intents API)
+                const { paymentMethod, error } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        address: {
+                            line1: document.getElementById('address').value
+                        }
+                    }
+                });
 
-            if (error) {
-                cardErrors.textContent = error.message;
-                submitButton.disabled = false;
-            } else {
-                // Send token and other form data to your server
+                if (error) {
+                    cardErrors.textContent = error.message;
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Pay Now';
+                    return;
+                }
+
+                // Send payment data to server
                 const response = await fetch('/api/charge', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        token: token.id,
+                        payment_method_id: paymentMethod.id,
+                        amount: selectedPackage.price,
                         package: packageKey,
                         name: document.getElementById('name').value,
                         email: document.getElementById('email').value,
                         address: document.getElementById('address').value,
-                        amount: selectedPackage.price * 100 // amount in cents
+                        description: `${selectedPackage.name} - Dependable Painting`,
+                        // Include honeypot fields
+                        website: form.website?.value || '',
+                        form_timestamp: form.form_timestamp?.value || ''
                     })
                 });
 
-                if (response.ok) {
-                    window.location.href = '/thank-you.html';
+                const result = await response.json();
+
+                if (result.success) {
+                    // Payment succeeded
+                    window.location.href = '/thank-you?payment=success&package=' + encodeURIComponent(selectedPackage.name);
+                } else if (result.requires_action) {
+                    // 3D Secure authentication required
+                    const { error: confirmError } = await stripe.confirmCardPayment(result.client_secret);
+                    
+                    if (confirmError) {
+                        cardErrors.textContent = confirmError.message;
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Pay Now';
+                    } else {
+                        window.location.href = '/thank-you?payment=success&package=' + encodeURIComponent(selectedPackage.name);
+                    }
                 } else {
-                    const { error } = await response.json();
-                    cardErrors.textContent = error;
+                    // Payment failed
+                    cardErrors.textContent = result.message || 'Payment failed. Please try again.';
                     submitButton.disabled = false;
+                    submitButton.textContent = 'Pay Now';
                 }
+            } catch (err) {
+                console.error('Payment error:', err);
+                cardErrors.textContent = 'An unexpected error occurred. Please try again.';
+                submitButton.disabled = false;
+                submitButton.textContent = 'Pay Now';
             }
         });
     </script>
