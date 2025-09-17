@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 
 <head>
+  <!-- Preconnect to external services for performance -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://imagedelivery.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  
+  <!-- Load dynamic configuration first -->
+  <script src="/config.js" async></script>
+  
+  <!-- Google Tag Manager with dynamic configuration fallback -->
   <script>
-    (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5SHM99TL');
+    (function (w, d, s, l, i) { 
+      w[l] = w[l] || []; 
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); 
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; 
+      j.async = true; 
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; 
+      f.parentNode.insertBefore(j, f); 
+    })(window, document, 'script', 'dataLayer', 'GTM-5SHM99TL');
   </script>
+  
   <title>Dependable Painting | Baldwin & Mobile County Painters</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +36,8 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://dependablepainting.work/">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  
+  <!-- Enhanced Organization Schema with telephone microdata -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,7 +58,67 @@
       "priceRange": "$$",
       "sameAs": ["https://g.page/r/CQjqan_iFBshEAE"]
     }
-    </script>
+  </script>
+  
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://dependablepainting.work/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are you licensed and insured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we are fully licensed and insured to protect both our team and your property during all painting projects."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "What kind of paint do you use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We primarily use high-quality Sherwin-Williams paints to ensure a durable and beautiful finish. However, we are happy to accommodate your preference for another brand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you require a deposit?", 
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we typically require a 25% deposit to schedule your project and order materials. The remaining balance is due upon satisfactory completion of the work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a typical project take?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "Timeline varies by project size and complexity. A standard room typically takes 1-2 days, while larger projects like whole home exteriors may take 3-5 days. We provide detailed timelines during our estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer free estimates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely! We provide free, no-obligation estimates for all painting projects. Contact us at (251) 525-4405 to schedule your consultation."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "What areas do you serve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We proudly serve Baldwin and Mobile County, Alabama, including Fairhope, Daphne, Spanish Fort, Mobile, Bay Minette, and surrounding communities."
+          }
+        }
+      ]
+    }
+  </script>
+  
   <meta property="og:title" content="Dependable Painting | Baldwin & Mobile County">
   <meta property="og:description"
     content="Top-rated interior, exterior, and commercial painters. Get your free estimate today.">
@@ -48,36 +127,24 @@
   <meta property="og:image"
     content="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
   <meta property="og:site_name" content="Dependable Painting">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <style>
-    :root {
-      --brand-color: #ff3b3b;
-      --dark-bg: #0a0a0a;
-      --light-bg: #1a1a1a;
-      --text-light: #fff;
-      --text-muted: #ccc;
-      --card-gradient: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
-      --card-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
-      --card-shadow-hover: 0 8px 20px rgba(255, 59, 59, 0.4);
-    }
+  
+  <!-- Critical CSS (compressed) -->
+  <style>:root{--brand-color:#ff3b3b;--dark-bg:#0a0a0a;--light-bg:#1a1a1a;--text-light:#fff;--text-muted:#ccc;--card-gradient:linear-gradient(145deg,#111 0%,#1f1f1f 100%);--card-shadow:0 12px 25px rgba(255,59,59,0.3);--card-shadow-hover:0 8px 20px rgba(255,59,59,0.4)}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,sans-serif;background:#000;color:var(--text-light);line-height:1.6}
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Phone button pulse animation */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
-
-    html {
-      scroll-behavior: smooth;
+    
+    /* Responsive header CTA */
+    .header-cta { margin: 0 1rem; }
+    @media (min-width: 768px) { 
+      #desktop-cta { display: block !important; } 
     }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: var(--text-light);
-      line-height: 1.6;
+    @media (max-width: 767px) { 
+      .header-cta { display: none !important; } 
     }
 
     header {
@@ -884,6 +951,15 @@
       </a>
       <span>Dependable Painting</span>
     </div>
+    
+    <!-- Prominent Call-to-Action Button -->
+    <div class="header-cta" style="display: none;" id="desktop-cta">
+      <a href="tel:+12515254405" class="cta-phone-btn" title="Call Now for Free Estimate" style="background: var(--brand-color); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+        <i class="fas fa-phone" style="animation: pulse 2s infinite;"></i>
+        <span>(251) 525-4405</span>
+      </a>
+    </div>
+    
     <div class="nav-icons">
       <div class="hours-toggle">
         <a href="#" title="Business Hours" aria-label="Business Hours"
@@ -897,7 +973,10 @@
           Sunday: Closed
         </div>
       </div>
-      <a href="tel:+12512891347" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+      <!-- Enhanced telephone microdata -->
+      <a href="tel:+12512891347" title="Call Us Now" aria-label="Call Us Now" itemprop="telephone">
+        <i class="fas fa-phone"></i>
+      </a>
       <a href="https://g.page/r/CQjqan_iFBshEAE" target="_blank" rel="noopener noreferrer" title="Find us on Google"
         aria-label="Find us on Google"><i class="fab fa-google"></i></a>
       <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"
@@ -1098,6 +1177,27 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </div>
+      
+      <!-- Noscript fallback for gallery -->
+      <noscript>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 2rem;">
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/8bd50a73-aa72-441b-2c29-6a4339238e00/gallery1200x675" 
+               alt="Exterior Painting Example 1 in Baldwin County" style="width: 100%; border-radius: 8px;" />
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/de028f41-d3b7-4521-3d7e-eac4cca5ad00/gallery1200x675" 
+               alt="Exterior Painting Example 2 in Mobile County" style="width: 100%; border-radius: 8px;" />
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/b45a9987-187f-4e58-9223-b043f621e200/gallery1200x675" 
+               alt="Exterior Painting Example 3 in Fairhope, AL" style="width: 100%; border-radius: 8px;" />
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/aee618ad-c867-40be-3743-454f9bacc900/gallery1200x675" 
+               alt="Interior Painting Example 1 in Daphne, AL" style="width: 100%; border-radius: 8px;" />
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/855a6981-77b1-49e2-4c42-812dc942ec00/gallery1200x675" 
+               alt="Interior Painting Example 2 in Spanish Fort" style="width: 100%; border-radius: 8px;" />
+          <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/f5d5d57b-4a28-49c0-f085-dbb371ec7e00/gallery1200x675" 
+               alt="Cabinet Painting Example in Bay Minette" style="width: 100%; border-radius: 8px;" />
+        </div>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">
+          View our complete gallery and get your free estimate: <a href="tel:+12515254405" style="color: var(--brand-color);">(251) 525-4405</a>
+        </p>
+      </noscript>
     </section>
 
     <section id="faq" class="section-dark">
@@ -1157,9 +1257,34 @@
     <section id="contact">
       <h2>Ready to Transform Your Space?</h2>
       <p>Let's get started on your project. Contact us today for a professional, no-obligation estimate.</p>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAABqFbvRqAn_zhZSQ" style="margin-bottom: 1.5rem;"></div>
-      <a href="/contact-form.html" class="hero-cta">Get My Free Estimate</a>
-      <p class="contact-info">Prefer to talk or email? <a href="tel:+12512891347" class="contact-link">Call us</a> or <a
+      
+      <!-- Enhanced Call-to-Action with prominent phone number -->
+      <div style="background: rgba(255, 59, 59, 0.1); border: 2px solid var(--brand-color); border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center;">
+        <h3 style="color: var(--brand-color); margin-bottom: 1rem;">Get Your FREE Estimate Today!</h3>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <a href="tel:+12515254405" class="hero-cta" style="background: var(--brand-color); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; display: flex; align-items: center; gap: 10px; transition: all 0.3s ease; min-width: 220px;" onmouseover="this.style.background='#e63333'" onmouseout="this.style.background='var(--brand-color)'">
+            <i class="fas fa-phone" style="animation: pulse 2s infinite;"></i>
+            <span>(251) 525-4405</span>
+          </a>
+          <a href="/contact-form.html" class="hero-cta" style="background: transparent; border: 2px solid var(--brand-color); color: var(--brand-color); padding: 13px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 18px; transition: all 0.3s ease; min-width: 220px;" onmouseover="this.style.background='var(--brand-color)'; this.style.color='white'" onmouseout="this.style.background='transparent'; this.style.color='var(--brand-color)'">
+            Get Online Estimate
+          </a>
+        </div>
+        
+        <!-- Hidden honeypot fields for spam protection -->
+        <div style="display: none;">
+          <input type="text" name="website" id="website" autocomplete="off" tabindex="-1">
+          <input type="text" name="company" id="company" autocomplete="off" tabindex="-1">
+          <input type="url" name="url" id="url" autocomplete="off" tabindex="-1">
+        </div>
+        
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 1rem;">
+          <strong>Available 24/7 for Emergency Services</strong><br>
+          Licensed • Insured • Local Baldwin & Mobile County
+        </p>
+      </div>
+      
+      <p class="contact-info">Prefer to talk or email? <a href="tel:+12512891347" class="contact-link" itemprop="telephone">Call us</a> or <a
           href="mailto:just-paint-it@dependablepainting.work" class="contact-link">email us</a> directly.</p>
     </section>
 
