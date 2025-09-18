@@ -1,21 +1,27 @@
 {
-	"name": "painter-tools",
-	"private": true,
-	"scripts": {
-		"start": "wrangler dev",
-		"dev": "wrangler dev",
-		"dev:port": "wrangler dev --port 8787",
-		"deploy": "wrangler deploy",
-		"preview": "wrangler dev --remote",
-		"types": "wrangler types --env-interface CloudflareBindings"
-	},
-	"dependencies": {
-		"hono": "^4.9.6",
-		"openai": "^5.20.1",
-		"swiper": "^11.2.10"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240821.0",
-		"wrangler": "^4.35.0"
-	}
+  "name": "painter-tools",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Dependable Painting Cloudflare Worker (API + static site)",
+  "scripts": {
+    "dev": "wrangler dev --remote --persist-to=./.wrangler/state",
+    "dev:local": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "migrate:apply": "wrangler d1 migrations apply DB --local || wrangler d1 migrations apply DB",
+    "migrate:apply:db2": "wrangler d1 migrations apply DB_2 || true",
+    "migrate:list": "wrangler d1 migrations list DB",
+    "types": "wrangler types",
+    "preview": "wrangler dev --remote --test-scheduled"
+  },
+  "dependencies": {
+    "chanfana": "^2.8.2",
+    "openai": "^5.20.1",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240821.0",
+    "miniflare": "^3.20250718.1",
+    "wrangler": "^4.35.0"
+  }
 }
