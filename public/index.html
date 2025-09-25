@@ -2,14 +2,41 @@
 
 <head>
   <script>
-    (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5SHM99TL');
+    // Defer GTM loading for better performance
+    window.dataLayer = window.dataLayer || [];
+    window.gtag_deferred = true;
+    function loadGTM() {
+      if (window.gtm_loaded) return;
+      window.gtm_loaded = true;
+      (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-5SHM99TL');
+    }
+    // Load GTM after user interaction or after 3 seconds
+    ['click', 'keydown', 'scroll', 'touchstart'].forEach(function(event) {
+      document.addEventListener(event, loadGTM, {once: true});
+    });
+    setTimeout(loadGTM, 3000);
   </script>
   <title>Dependable Painting | Baldwin & Mobile County Painters</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png"
-    href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="icon" type="image/png" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
+  <link rel="preconnect" href="https://imagedelivery.net">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <!-- Font optimization - ensure system fonts are used as fallback -->
+  <style>
+    @font-face {
+      font-family: system-ui;
+      font-display: swap;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" 
+        media="print" onload="this.media='all'; this.onload=null;"
+        integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" 
+        crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" 
+        integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" 
+        crossorigin="anonymous"></noscript>
   <meta name="theme-color" content="#000000">
   <meta name="keywords"
     content="painter, painting contractor, house painting, commercial painting, interior painting, exterior painting, cabinet painting, Baldwin County painter, Mobile County painter, Fairhope painter, Daphne painting company, Spanish Fort painting contractor, Bay Minette painter, dependable painting">
@@ -880,7 +907,7 @@
     <div class="brand">
       <a href="/">
         <img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512"
-          alt="Dependable Painting Logo">
+          alt="Dependable Painting Logo" width="40" height="40" fetchpriority="high">
       </a>
       <span>Dependable Painting</span>
     </div>
@@ -1077,22 +1104,28 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/8bd50a73-aa72-441b-2c29-6a4339238e00/gallery1200x675"
-              alt="Exterior Painting Example 1 in Baldwin County" loading="lazy" /></div>
+              alt="Exterior Painting Example 1 in Baldwin County" 
+              width="1200" height="675" loading="lazy" /></div>
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/de028f41-d3b7-4521-3d7e-eac4cca5ad00/gallery1200x675"
-              alt="Exterior Painting Example 2 in Mobile County" loading="lazy" /></div>
+              alt="Exterior Painting Example 2 in Mobile County" 
+              width="1200" height="675" loading="lazy" /></div>
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/b45a9987-187f-4e58-9223-b043f621e200/gallery1200x675"
-              alt="Exterior Painting Example 3 in Fairhope, AL" loading="lazy" /></div>
+              alt="Exterior Painting Example 3 in Fairhope, AL" 
+              width="1200" height="675" loading="lazy" /></div>
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/aee618ad-c867-40be-3743-454f9bacc900/gallery1200x675"
-              alt="Interior Painting Example 1 in Daphne, AL" loading="lazy" /></div>
+              alt="Interior Painting Example 1 in Daphne, AL" 
+              width="1200" height="675" loading="lazy" /></div>
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/855a6981-77b1-49e2-4c42-812dc942ec00/gallery1200x675"
-              alt="Interior Painting Example 2 in Spanish Fort" loading="lazy" /></div>
+              alt="Interior Painting Example 2 in Spanish Fort" 
+              width="1200" height="675" loading="lazy" /></div>
           <div class="swiper-slide"><img
               src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/f5d5d57b-4a28-49c0-f085-dbb371ec7e00/gallery1200x675"
-              alt="Cabinet Painting Example in Bay Minette" loading="lazy" /></div>
+              alt="Cabinet Painting Example in Bay Minette" 
+              width="1200" height="675" loading="lazy" /></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
@@ -1200,9 +1233,45 @@
         289-1347</a> • Bay Minette, AL</p>
   </footer>
 
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer
-    crossorigin="anonymous"></script>
+  <!-- Load Web Vitals monitoring first -->
+  <script src="/web-vitals.js" async></script>
+  
+  <!-- Defer non-critical scripts -->
+  <script>
+    // Defer script loading for better performance
+    function loadScript(src, async = true, defer = false, integrity = null) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = async;
+      script.defer = defer;
+      if (integrity) {
+        script.integrity = integrity;
+        script.crossOrigin = 'anonymous';
+      }
+      if (src.includes('font-awesome')) {
+        script.crossOrigin = 'anonymous';
+      }
+      document.head.appendChild(script);
+    }
+
+    // Load scripts after user interaction or after delay
+    function loadNonCriticalScripts() {
+      if (window.scriptsLoaded) return;
+      window.scriptsLoaded = true;
+      
+      loadScript('https://unpkg.com/swiper/swiper-bundle.min.js', true, false, 'sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb');
+      // Use local font-awesome or defer it further as it's not critical
+      setTimeout(() => {
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js', false, true);
+      }, 3000);
+    }
+
+    // Load on user interaction or after 2 seconds
+    ['click', 'keydown', 'scroll', 'touchstart'].forEach(function(event) {
+      document.addEventListener(event, loadNonCriticalScripts, {once: true});
+    });
+    setTimeout(loadNonCriticalScripts, 2000);
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // --- Cache DOM Elements ---
@@ -1234,13 +1303,25 @@
         });
       });
 
-      // --- Initialize Gallery Swiper ---
-      if (typeof Swiper !== 'undefined') {
+      // Initialize Swiper when scripts are loaded
+      function initSwiper() {
+        if (typeof Swiper === 'undefined') {
+          // Retry after a short delay if Swiper isn't loaded yet
+          setTimeout(initSwiper, 100);
+          return;
+        }
+
+        // --- Initialize Gallery Swiper ---
         new Swiper('.gallery-swiper', {
-          loop: true, spaceBetween: 20,
+          loop: true, 
+          spaceBetween: 20,
           autoplay: { delay: 4000, disableOnInteraction: false },
           pagination: { el: '.gallery-swiper .swiper-pagination', clickable: true },
           navigation: { nextEl: '.gallery-swiper .swiper-button-next', prevEl: '.gallery-swiper .swiper-button-prev' },
+          lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 2
+          }
         });
 
         // --- Initialize Testimonial Swiper ---
@@ -1257,14 +1338,23 @@
             clickable: true,
           },
           breakpoints: {
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
           }
         });
+      }
+
+      // Check if scripts are loaded and init swiper
+      if (window.scriptsLoaded) {
+        initSwiper();
+      } else {
+        // Listen for scripts loaded
+        const checkScripts = setInterval(() => {
+          if (window.scriptsLoaded && typeof Swiper !== 'undefined') {
+            clearInterval(checkScripts);
+            initSwiper();
+          }
+        }, 100);
       }
 
       // --- Menu & Popup Logic ---
@@ -1327,10 +1417,13 @@
       }
     });
 
-    // --- Analytics Tracking ---
+    // --- Optimized Analytics Tracking with Performance Budget ---
     (function () {
       var sid = localStorage.getItem('dp_sid');
-      if (!sid) { sid = 's_' + Math.random().toString(36).slice(2, 10); localStorage.setItem('dp_sid', sid); }
+      if (!sid) { 
+        sid = 's_' + Math.random().toString(36).slice(2, 10); 
+        localStorage.setItem('dp_sid', sid); 
+      }
       var PAGE = location.pathname || '/';
       var SVC = (p => {
         p = (p || '').toLowerCase();
@@ -1341,35 +1434,64 @@
         return 'other';
       })(PAGE);
 
+      // Use requestIdleCallback for non-critical tracking
       function send(type, extra) {
-        var U = new URLSearchParams(location.search);
-        var utm = {
-          source: sessionStorage.getItem('utm_source') || U.get('utm_source') || '',
-          medium: sessionStorage.getItem('utm_medium') || U.get('utm_medium') || '',
-          campaign: sessionStorage.getItem('utm_campaign') || U.get('utm_campaign') || ''
+        const sendTracking = () => {
+          var U = new URLSearchParams(location.search);
+          var utm = {
+            source: sessionStorage.getItem('utm_source') || U.get('utm_source') || '',
+            medium: sessionStorage.getItem('utm_medium') || U.get('utm_medium') || '',
+            campaign: sessionStorage.getItem('utm_campaign') || U.get('utm_campaign') || ''
+          };
+          var gclid = sessionStorage.getItem('gclid') || U.get('gclid') || '';
+          if (utm.source) sessionStorage.setItem('utm_source', utm.source);
+          if (utm.medium) sessionStorage.setItem('utm_medium', utm.medium);
+          if (utm.campaign) sessionStorage.setItem('utm_campaign', utm.campaign);
+          if (gclid) sessionStorage.setItem('gclid', gclid);
+          
+          var payload = Object.assign({ 
+            type: type, 
+            page: PAGE, 
+            service: SVC, 
+            session: sid, 
+            utm: utm, 
+            gclid: gclid 
+          }, extra || {});
+          
+          var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+          if (!navigator.sendBeacon || !navigator.sendBeacon('/api/track', blob)) {
+            fetch('/api/track', { 
+              method: 'POST', 
+              headers: { 'content-type': 'application/json' }, 
+              body: JSON.stringify(payload) 
+            }).catch(() => { });
+          }
         };
-        var gclid = sessionStorage.getItem('gclid') || U.get('gclid') || '';
-        if (utm.source) sessionStorage.setItem('utm_source', utm.source);
-        if (utm.medium) sessionStorage.setItem('utm_medium', utm.medium);
-        if (utm.campaign) sessionStorage.setItem('utm_campaign', utm.campaign);
-        if (gclid) sessionStorage.setItem('gclid', gclid);
-        var payload = Object.assign({ type: type, page: PAGE, service: SVC, session: sid, utm: utm, gclid: gclid }, extra || {});
-        var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        if (!navigator.sendBeacon || !navigator.sendBeacon('/api/track', blob)) {
-          fetch('/api/track', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => { });
+
+        if (window.requestIdleCallback) {
+          requestIdleCallback(sendTracking);
+        } else {
+          setTimeout(sendTracking, 0);
         }
       }
+
       send('visit');
+      
       var fired50 = false;
       window.addEventListener('scroll', function () {
         if (fired50) return;
         var sc = (window.scrollY + window.innerHeight) / Math.max(document.body.scrollHeight, 1) * 100;
-        if (sc >= 50) { fired50 = true; send('scroll', { scroll_pct: 50 }); }
+        if (sc >= 50) { 
+          fired50 = true; 
+          send('scroll', { scroll_pct: 50 }); 
+        }
       }, { passive: true });
+      
       document.addEventListener('click', function (e) {
         var a = e.target.closest && e.target.closest('a[href^="tel:"]');
         if (a) { send('click_call'); }
       });
+      
       var t0 = performance.now();
       window.addEventListener('pagehide', function () {
         send('visit', { duration_ms: Math.round(performance.now() - t0) });
