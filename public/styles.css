@@ -1,5 +1,10 @@
 /* Non-critical CSS - deferred loading */
 
+/* Font optimization */
+* {
+  font-display: swap;
+}
+
 /* Services Grid */
 .services-grid {
   display: grid;

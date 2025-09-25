@@ -23,8 +23,20 @@
   <link rel="preconnect" href="https://imagedelivery.net">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" media="print" onload="this.media='all'; this.onload=null;">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"></noscript>
+  <!-- Font optimization - ensure system fonts are used as fallback -->
+  <style>
+    @font-face {
+      font-family: system-ui;
+      font-display: swap;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" 
+        media="print" onload="this.media='all'; this.onload=null;"
+        integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" 
+        crossorigin="anonymous">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" 
+        integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" 
+        crossorigin="anonymous"></noscript>
   <meta name="theme-color" content="#000000">
   <meta name="keywords"
     content="painter, painting contractor, house painting, commercial painting, interior painting, exterior painting, cabinet painting, Baldwin County painter, Mobile County painter, Fairhope painter, Daphne painting company, Spanish Fort painting contractor, Bay Minette painter, dependable painting">
@@ -1227,11 +1239,15 @@
   <!-- Defer non-critical scripts -->
   <script>
     // Defer script loading for better performance
-    function loadScript(src, async = true, defer = false) {
+    function loadScript(src, async = true, defer = false, integrity = null) {
       const script = document.createElement('script');
       script.src = src;
       script.async = async;
       script.defer = defer;
+      if (integrity) {
+        script.integrity = integrity;
+        script.crossOrigin = 'anonymous';
+      }
       if (src.includes('font-awesome')) {
         script.crossOrigin = 'anonymous';
       }
@@ -1243,8 +1259,11 @@
       if (window.scriptsLoaded) return;
       window.scriptsLoaded = true;
       
-      loadScript('https://unpkg.com/swiper/swiper-bundle.min.js', true, false);
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js', false, true);
+      loadScript('https://unpkg.com/swiper/swiper-bundle.min.js', true, false, 'sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb');
+      // Use local font-awesome or defer it further as it's not critical
+      setTimeout(() => {
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js', false, true);
+      }, 3000);
     }
 
     // Load on user interaction or after 2 seconds
