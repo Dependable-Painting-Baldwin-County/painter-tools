@@ -1,7 +1,7 @@
-/* Lightweight site-wide AI chat widget */
 (function(){
   const PHONE_DISPLAY = '(251) 423-5855';
   const ENDPOINT = '/api/chat';
+  const HISTORY_ENDPOINT = '/api/chat/history';
   const STORAGE_KEY = 'dp_session_id_v1';
   function sid(){ let s=localStorage.getItem(STORAGE_KEY); if(!s){ s=crypto.randomUUID(); localStorage.setItem(STORAGE_KEY,s);} return s; }
   function h(tag, attrs={}, children=[]) { const el=document.createElement(tag); Object.entries(attrs).forEach(([k,v])=>{ if(k==='class') el.className=v; else if(k.startsWith('on')&&typeof v==='function') el.addEventListener(k.slice(2),v); else el.setAttribute(k,v); }); children.forEach(c=>{ if(typeof c==='string') el.appendChild(document.createTextNode(c)); else if(c) el.appendChild(c);}); return el; }
@@ -48,7 +48,7 @@
   panel.append(header,bodyEl,suggestions,footer,ctaLine);
   document.body.appendChild(launch); document.body.appendChild(panel);
 
-  function addMsg(content, role){ const el=h('div',{class:'dp-msg '+role},[content]); bodyEl.appendChild(el); bodyEl.scrollTop=bodyEl.scrollHeight; }
+  function addMsg(content, role){ const el=h('div',{class:'dp-msg '+role},[content]); bodyEl.appendChild(el); bodyEl.scrollTop=bodyEl.scrollHeight; return el; }
   function thinking(){ const el=h('div',{class:'dp-msg ai'},[h('span',{},['Thinking ']),h('span',{class:'dp-spinner'})]); bodyEl.appendChild(el); bodyEl.scrollTop=bodyEl.scrollHeight; return el; }
 
   function open(){ launch.style.display='none'; panel.style.display='flex'; textArea.focus(); }
@@ -61,12 +61,24 @@
       if(!res.ok){ throw new Error('Network'); }
       const data= await res.json();
       tEl.remove();
-      addMsg(data.answer || '[No answer]', 'ai');
+      addMsg(data.reply || data.answer || '[No answer]', 'ai');
     } catch(e){ tEl.remove(); addMsg('Error fetching answer. Please call '+PHONE_DISPLAY+'.','ai'); }
     sendBtn.disabled=false; bodyEl.scrollTop=bodyEl.scrollHeight; }
   sendBtn.addEventListener('click',send);
   textArea.addEventListener('keydown',e=>{ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send(); }});
 
-  // Intro message
-  setTimeout(()=>{ addMsg('Hi! I can help with painting surfaces, Sherwin-Williams product guidance, prep steps, and our services. Ask away.', 'ai'); }, 800);
+  // Load last few history messages (if any)
+  async function loadHistory(){
+    try{
+      const r = await fetch(`${HISTORY_ENDPOINT}?session=${encodeURIComponent(sid())}&limit=6`);
+      if(!r.ok) return;
+      const j = await r.json();
+      if(j.items){
+        j.items.reverse().forEach(it=>{ if(it.question) addMsg(it.question,'user'); if(it.answer) addMsg(it.answer,'ai'); });
+      }
+    }catch(_){/* ignore */}
+    // Intro if no messages
+    if(!bodyEl.querySelector('.dp-msg')) addMsg('Hi! I can help with painting surfaces, Sherwin-Williams product guidance, prep steps, and our services. Ask away.', 'ai');
+  }
+  setTimeout(loadHistory,500);
 })();

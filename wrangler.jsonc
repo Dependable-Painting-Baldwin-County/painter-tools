@@ -3,7 +3,7 @@
 	"main": "src/index.ts",
 	"compatibility_date": "2025-08-29",
 	"placement": { "mode": "smart" },
-	"workers_dev": true, // allow preview/remote dev even with custom domain route
+	"workers_dev": true,
 	"compatibility_flags": ["nodejs_compat", "enable_nodejs_http_server_modules", "enable_nodejs_process_v2", "formdata_parser_converts_files_to_strings"],
 	"assets": { "directory": "./public" },
 	"routes": [ { "pattern": "dependablepainting.work", "custom_domain": true } ],
@@ -36,7 +36,7 @@
 	],
 	"ai": { "binding": "AI" },
 	"vars": {
-		"DESTINATION": "alexdimmler@dependablepainting.work",
+		"DESTINATION": "alex.dimmler5@icloud.com",
 		"SENDER": "no-reply@dependablepainting.work",
 		"ENVIRONMENT": "production"
 	}

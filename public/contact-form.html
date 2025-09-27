@@ -180,7 +180,8 @@
               gtag('event', 'generate_lead', { event_category: 'Lead', event_label: 'Contact Form', value: 1 });
             }
             if (window.dpSend) window.dpSend('form_submit', { ok: true });
-            window.location.href = '/thank-you';
+            // Redirect to actual file path
+            window.location.href = '/thank-you.html';
           } else {
             const result = await r.json().catch(() => ({}));
             responseDiv.textContent = result.error || 'Submission failed. Please try again.';
