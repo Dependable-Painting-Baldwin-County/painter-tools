@@ -1,4 +1,3 @@
--- Chat log table for AI assistant interactions
 CREATE TABLE IF NOT EXISTS chat_log (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   ts TEXT NOT NULL,

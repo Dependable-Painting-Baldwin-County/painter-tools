@@ -12,112 +12,8 @@
 		</script>
 		<link rel="icon" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/f75e650a-e604-44eb-76b6-9bb96db07b00/Logos" />
 		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-		
-		<style>
-			/* 1. Base & Reset Styles */
-			*, *::before, *::after {
-				box-sizing: border-box;
-				margin: 0;
-				padding: 0;
-			}
-			
-			html {
-				scroll-behavior: smooth;
-			}
-			
-			body {
-				font-family: Arial, sans-serif;
-				background: #000;
-				color: #fff;
-				line-height: 1.6;
-			}
-			
-			/* 2. Header & Brand */
-			header {
-				background: #0a0a0a;
-				padding: 1rem 2rem;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				position: sticky;
-				top: 0;
-				z-index: 9999;
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-			}
-			
-			.brand {
-				display: flex;
-				align-items: center;
-				gap: 0.8rem;
-			}
-			
-			.brand a {
-				text-decoration: none;
-				display: flex;
-				align-items: center;
-			}
-			
-			.brand img {
-				width: 40px;
-				height: auto;
-			}
-			
-			.brand span {
-				font-weight: bold;
-				font-size: 1.4rem;
-				color: #ff3b3b;
-			}
-			
-			/* 3. Navigation Icons & Hours Popup */
-			.nav-icons {
-				display: flex;
-				align-items: center;
-				gap: 1.2rem;
-			}
-			
-			.nav-icons a {
-				color: #ff3b3b;
-				font-size: 1.5rem;
-				transition: color 0.3s ease;
-			}
-			
-			.nav-icons a:hover {
-				color: #fff;
-			}
-			
-			.hours-toggle {
-				position: relative;
-			}
-			
-			#hoursPopup {
-				display: none;
-				position: absolute;
-				top: 130%;
-				right: 0;
-				background-color: #000000;
-				color: #fff;
-				padding: 1rem;
-				border: 1px solid #333333;
-				border-radius: 6px;
-				box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
-				white-space: nowrap;
-				z-index: 10000;
-				opacity: 0;
-				transform: translateY(-10px);
-				transition: opacity 0.3s ease, transform 0.3s ease;
-			}
-			
-			#hoursPopup.visible {
-				display: block;
-				opacity: 1;
-				transform: translateY(0);
-			}
-			
-			#hoursPopup strong {
-				color: #ff3b3b;
-			}
-			
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="/styles.css">
 			/* 4. Hamburger & Mobile Menu */
 			.hamburger {
 				width: 30px;
@@ -534,11 +430,12 @@
 		</main>
 		
 		<footer>
-			<p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12512891347" class="contact-link">(251) 289-1347</a> • Bay Minette, AL</p>
+			<p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12514235855" class="contact-link">(251) 423-5855</a> • Bay Minette, AL</p>
+			<script src="/chat-widget.js" defer></script>
 		</footer>
 		
 		<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dependablepainting.work/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://dependablepainting.work/services.html"},{"@type":"ListItem","position":3,"name":"Wood Siding","item":"https://dependablepainting.work/wood-siding.html"}]}</script>
-		<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Wood Siding Repair & Painting","serviceType":"Exterior Wood Siding Preparation and Painting","provider":{"@type":"Organization","@id":"https://dependablepainting.work/#organization"},"areaServed":[{"@type":"Place","name":"Baldwin County, AL"}],"url":"https://dependablepainting.work/wood-siding.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"25"}}</script>
+		<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Wood Siding Repair & Painting","serviceType":"Exterior Wood Siding Preparation and Painting","provider":{"@type":"Organization","@id":"https://dependablepainting.work/#organization"},"areaServed":[{"@type":"Place","name":"Baldwin County, AL"}],"url":"https://dependablepainting.work/wood-siding.html"}</script>
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				

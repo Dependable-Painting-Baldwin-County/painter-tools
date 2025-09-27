@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS orders (
   id TEXT PRIMARY KEY,
   created_ts TEXT NOT NULL,
-  status TEXT NOT NULL,               -- pending | scheduled | paid | canceled
+  status TEXT NOT NULL,
   name TEXT,
   email TEXT,
   phone TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS orders (
   total_cents INTEGER DEFAULT 0,
   deposit_cents INTEGER DEFAULT 0,
   balance_cents INTEGER DEFAULT 0,
-  schedule_json TEXT                  -- JSON blob with requested/confirmed window
+  schedule_json TEXT
 );
 
 CREATE TABLE IF NOT EXISTS order_items (
@@ -25,6 +25,6 @@ CREATE TABLE IF NOT EXISTS order_items (
   unit TEXT,
   unit_price_cents INTEGER,
   total_cents INTEGER,
-  meta_json TEXT,                     -- echo of options/line details
+  meta_json TEXT,
   PRIMARY KEY(order_id, sku)
 );

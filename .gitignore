@@ -145,3 +145,13 @@ vite.config.ts.timestamp-*
 wrangler.jsonc
 package.json
 package-lock.json
+pnpm-lock.yaml
+package.json
+/migrations
+wrangler.jsonc
+pnpm-workspace.yaml
+migrations/0002_orders.sql
+migrations/0003_chat.sql
+*.ts
+*.sql
+*.jsonc

@@ -1,49 +1,43 @@
 {
 	"name": "painter-tools",
-	"main": "src/index.js",
+	"main": "src/index.ts",
 	"compatibility_date": "2025-08-29",
-	// Directory for static assets served via app.use('*', serveStatic())
+	"placement": { "mode": "smart" },
+	"workers_dev": true, // allow preview/remote dev even with custom domain route
+	"compatibility_flags": ["nodejs_compat", "enable_nodejs_http_server_modules", "enable_nodejs_process_v2", "formdata_parser_converts_files_to_strings"],
 	"assets": { "directory": "./public" },
-	// (Removed migrations_dir: wrangler auto-detects ./migrations)
-	"routes": [
-		{ "pattern": "dependablepainting.work", "custom_domain": true }
-	],
+	"routes": [ { "pattern": "dependablepainting.work", "custom_domain": true } ],
 	"observability": { "enabled": true },
 	"d1_databases": [
-		{ "binding": "DB", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "database_name": "prod-d1-painter-data" },
+		{ "binding": "DB", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "preview_database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "database_name": "prod-d1-painter-data" }
 	],
 	"analytics_engine_datasets": [
 		{ "binding": "ANALYTICS_EVENTS", "dataset": "analytics_events" }
 	],
 	"queues": {
 		"producers": [
+			{ "binding": "LEAD_QUEUE", "queue": "painter-lead" },
 			{ "binding": "GA4_QUEUE", "queue": "painter-analytics-forward-ga4" },
-			{ "binding": "INGEST_QUEUE", "queue": "painter-analytics-ingest" },
 			{ "binding": "CHAT_QUEUE", "queue": "painter-chat-log-interaction" },
-			{ "binding": "GEO_QUEUE", "queue": "painter-data-enrich-geo" },
-			{ "binding": "LEAD_QUEUE", "queue": "painter-lead-ingest" },
-			{ "binding": "LEAD_NOTIFY_QUEUE", "queue": "painter-lead-notify-customer" },
-			{ "binding": "ORDER_SAVE_QUEUE", "queue": "painter-order-save" },
-			{ "binding": "ORDER_RECEIPT_QUEUE", "queue": "painter-order-send-receipt" },
-			{ "binding": "JOB_FINANCIALS_QUEUE", "queue": "painter-job-calculate-financials" },
-			{ "binding": "JOB_REMINDER_QUEUE", "queue": "painter-job-schedule-reminder" }
+			{ "binding": "LEAD_NOTIFY_QUEUE", "queue": "painter-lead-notify-customer" }
+		],
+		"consumers": [
+			{ "queue": "painter-lead" },
+			{ "queue": "painter-analytics-forward-ga4" },
+			{ "queue": "painter-chat-log-interaction" },
+			{ "queue": "painter-lead-notify-customer" }
 		]
 	},
 	"kv_namespaces": [
-		{ "binding": "PAINTER_KV", "id": "35efdb46f84c434e83c05b31d8d418cb" }
+		{ "binding": "PAINTER_KV", "id": "35efdb46f84c434e83c05b31d8d418cb", "preview_id": "d0a317201bd2413a8d4cdaac642137ef" }
 	],
 	"vectorize": [
 		{ "binding": "VECTORIZE", "index_name": "autorag-painter-rags" }
 	],
 	"ai": { "binding": "AI" },
-	"r2_buckets": [
-		{ "binding": "PAINT_BUCKET", "bucket_name": "paint-bucket" }
-	],
 	"vars": {
 		"DESTINATION": "alexdimmler@dependablepainting.work",
 		"SENDER": "no-reply@dependablepainting.work",
-		// Allows runtime code to know environment (dev vs prod) if needed
 		"ENVIRONMENT": "production"
 	}
-	// "services": []
 }

@@ -20,7 +20,7 @@
 		      "@id": "https://dependablepainting.work/#organization",
 		      "name": "Dependable Painting",
 		      "url": "https://dependablepainting.work/",
-		      "telephone": "+1-251-289-1347",
+          "telephone": "+1-251-423-5855",
 		      "logo": {"@type":"ImageObject","url":"https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512"},
 		      "address": {"@type":"PostalAddress","addressLocality":"Bay Minette","addressRegion":"AL","postalCode":"36507","addressCountry":"US"},
 		      "sameAs": ["https://g.page/r/CQjqan_iFBshEAE"]
@@ -55,71 +55,18 @@
   <meta property="og:image"
     content="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512">
   <meta property="og:site_name" content="Dependable Painting">
+  <link rel="stylesheet" href="/styles.css">
   <style>
-    :root {
-      --brand-color: #ff3b3b;
-      --dark-bg: #0a0a0a;
-      --light-bg: #1a1a1a;
-      --text-light: #fff;
-      --text-muted: #ccc;
-      --card-gradient: linear-gradient(145deg, #111 0%, #1f1f1f 100%);
-      --card-shadow: 0 12px 25px rgba(255, 59, 59, 0.3);
-      --card-shadow-hover: 0 8px 20px rgba(255, 59, 59, 0.4);
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    header {
-      background: var(--dark-bg);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .brand a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-    }
-
-    .brand img {
-      width: 40px;
-      height: auto;
-    }
-
-    .brand span {
-      font-weight: bold;
-      font-size: 1.4rem;
-      color: var(--brand-color);
-    }
+    /* Page-specific tweaks */
+    .about-hero { padding:4rem 2rem; background:var(--dark-bg); text-align:center; }
+    .about-hero h1 { font-size:2.6rem; color:var(--brand-color); margin-bottom:1rem; }
+    .about-hero p { max-width:800px; margin:0 auto; color:var(--text-muted); }
+    .about-section { padding:3.5rem 2rem; background:var(--light-bg); }
+    .about-grid { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .about-card { background:var(--card-gradient); padding:1.6rem 1.4rem; border-radius:14px; box-shadow:var(--card-shadow); }
+    .about-card h3 { color:var(--brand-color); margin-bottom:.8rem; font-size:1.15rem; }
+    .about-card p { font-size:.95rem; line-height:1.55; }
+  </style>
 
     .nav-icons {
       display: flex;
@@ -637,7 +584,7 @@
           Sunday: Closed
         </div>
       </div>
-      <a href="tel:+12512891347" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
+  <a href="tel:+12514235855" title="Call Us" aria-label="Call Us"><i class="fas fa-phone"></i></a>
       <a href="https://g.page/r/CQjqan_iFBshEAE" target="_blank" rel="noopener noreferrer" title="Find us on Google"
         aria-label="Find us on Google"><i class="fab fa-google"></i></a>
       <div class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"
@@ -742,9 +689,10 @@
   </main>
 
   <footer>
-    <p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12512891347">(251) 289-1347</a> • Bay Minette, AL</p>
+  <p>© <span id="current-year"></span> Dependable Painting • <a href="tel:+12514235855">(251) 423-5855</a> • Bay Minette, AL</p>
+  <script src="/chat-widget.js" defer></script>
   </footer>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://dependablepainting.work/#organization","name":"Dependable Painting","url":"https://dependablepainting.work/","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"25"},"review":[{"@type":"Review","author":{"@type":"Person","name":"John D."},"reviewBody":"Dependable Painting transformed our home's interior—flawless lines and zero mess.","reviewRating":{"@type":"Rating","ratingValue":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Sarah L."},"reviewBody":"Professional, punctual, and the exterior finish still looks new months later.","reviewRating":{"@type":"Rating","ratingValue":"5"}},{"@type":"Review","author":{"@type":"Person","name":"Michael P."},"reviewBody":"Cabinet repaint exceeded expectations—factory finish quality.","reviewRating":{"@type":"Rating","ratingValue":"5"}}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://dependablepainting.work/#organization","name":"Dependable Painting","url":"https://dependablepainting.work/"}]}</script>
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
