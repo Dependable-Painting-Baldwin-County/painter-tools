@@ -102,48 +102,33 @@
       color: var(--text-light);
     }
 
-    .hours-toggle {
-      position: relative;
+    /* --- Compact Reviews Carousel Redesign --- */
+    #reviews { position:relative; }
+    .testimonial-swiper { padding-bottom:2.5rem; }
+    .review-card {
+      background:#121212;
+      padding:1.1rem 1rem 1rem;
+      border-radius:14px;
+      box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 1px rgba(255,59,59,.18);
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:.65rem;
+      position:relative;
+      cursor:pointer;
+      transition:box-shadow .3s ease, transform .3s ease;
     }
-
-    .hoursPopup {
-      display: none;
-      position: absolute;
-      top: 130%;
-      right: 0;
-      background-color: #000;
-      color: var(--text-light);
-      padding: 1rem;
-      border: 1px solid #333;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(255, 59, 59, 0.5);
-      white-space: nowrap;
-      z-index: 10000;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .hoursPopup.visible {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hoursPopup strong {
-      color: var(--brand-color);
-    }
-
-    .hamburger {
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-left: 1rem;
-    }
-
+    .review-card:focus-visible { outline:none; box-shadow:0 0 0 2px var(--brand-color),0 6px 18px rgba(255,59,59,.35); }
+    .review-card:hover { box-shadow:0 10px 26px rgba(255,59,59,.22),0 0 0 1px rgba(255,59,59,.35); transform:translateY(-4px); }
+    .review-stars { color:var(--brand-color); font-size:.8rem; letter-spacing:2px; }
+    .review-body { font-size:.85rem; line-height:1.45; color:#ddd; font-style:italic; }
+    .review-author { margin-top:auto; font-size:.7rem; letter-spacing:.6px; color:var(--brand-color); font-weight:600; text-transform:uppercase; }
+    .review-card.expanded .review-body { white-space:pre-wrap; }
+    .review-toggle-hint { position:absolute; bottom:6px; right:10px; font-size:.55rem; letter-spacing:.8px; color:#666; text-transform:uppercase; }
+    @media (min-width:768px){ .review-card { padding:1.2rem 1.2rem 1.4rem; } .review-body { font-size:.9rem; } }
+    /* Ensure slides auto-height to content for compact look */
+    .testimonial-swiper .swiper-slide { height:auto !important; }
+    /* --- End Compact Reviews --- */
     .hamburger span {
       height: 3px;
       width: 100%;
@@ -967,6 +952,9 @@
       </div>
       <a href="https://g.page/r/CQjqan_iFBshEAE/review" target="_blank" rel="noopener noreferrer"
         class="cta-large">Leave Us a Review</a>
+      <div style="margin-top:1rem; text-align:center;">
+        <a href="/reviews.html" style="font-size:.9rem; color:var(--text-muted); text-decoration:none;">View All Reviews →</a>
+      </div>
     </section>
     <section id="instant-pricing">
       <h2>Instant Pricing for Standard Rooms</h2>
@@ -1110,16 +1098,6 @@
     <p class="contact-info">Prefer to talk or email? <a href="tel:+12514235855" class="contact-link">Call us</a> or <a
         href="mailto:just-paint-it@dependablepainting.work" class="contact-link">email us</a> directly.</p>
     </section>
-    <section id="ai-assistant" class="section-dark">
-      <h2>Ask Our AI Assistant</h2>
-      <p>Have a quick question? Ask our AI assistant about our services, service area, or processes.</p>
-      <div class="ai-form">
-        <textarea id="ai-question" rows="3" placeholder="Ask Paint Guru..."
-          aria-label="Ask our AI a question"></textarea>
-        <button id="ask-ai-button">Get Answer</button>
-        <div id="ai-response" aria-live="polite">The AI's answer will appear here</div>
-      </div>
-    </section>
     <section class="map-section">
       <h2>Where We Work</h2>
       <p>Dependable Painting proudly serves homeowners and businesses throughout <strong>Baldwin County</strong> and
@@ -1180,9 +1158,26 @@
         if(wrapper){
           wrapper.innerHTML = '';
           window.REVIEWS.forEach(r => {
+            const full = r.body.replace(/"/g,'&quot;');
+            const short = full.length > 160 ? full.slice(0,160).trim()+"…" : full;
             const slide = document.createElement('div');
             slide.className = 'swiper-slide';
-            slide.innerHTML = `<div class="review-card"><p>"${r.body.replace(/"/g,'&quot;')}"</p><p>- ${r.author}</p></div>`;
+            slide.innerHTML = `
+              <div class="review-card" role="button" tabindex="0" aria-expanded="false" data-full="${full}" data-short="${short}">
+                <div class="review-stars" aria-hidden="true">★★★★★</div>
+                <div class="review-body">"${short}"</div>
+                <div class="review-author">- ${r.author}</div>
+                <div class="review-toggle-hint">Tap to expand</div>
+              </div>`;
+            const card = slide.firstElementChild;
+            function toggle(){
+              const expanded = card.classList.toggle('expanded');
+              const bodyEl = card.querySelector('.review-body');
+              if(expanded){ bodyEl.innerHTML = '"'+card.getAttribute('data-full')+'"'; card.setAttribute('aria-expanded','true'); card.querySelector('.review-toggle-hint').textContent='Tap to collapse'; }
+              else { bodyEl.innerHTML = '"'+card.getAttribute('data-short')+'"'; card.setAttribute('aria-expanded','false'); card.querySelector('.review-toggle-hint').textContent='Tap to expand'; }
+            }
+            card.addEventListener('click',toggle);
+            card.addEventListener('keydown',e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); toggle(); }});
             wrapper.appendChild(slide);
           });
         }
@@ -1237,7 +1232,7 @@
             loadPrevNextAmount: 2
           }
         });
-        new Swiper('.testimonial-swiper', {
+        const testimonialSwiper = new Swiper('.testimonial-swiper', {
           loop: true,
           spaceBetween: 30,
           slidesPerView: 1,
@@ -1254,6 +1249,12 @@
             1024: { slidesPerView: 3 }
           }
         });
+        // Pause on hover/focus for accessibility
+        const reviewsSection = document.querySelector('#reviews');
+        if(reviewsSection){
+          ['mouseenter','focusin'].forEach(ev=>reviewsSection.addEventListener(ev,()=>testimonialSwiper.autoplay.stop()));
+          ['mouseleave','focusout'].forEach(ev=>reviewsSection.addEventListener(ev,()=>testimonialSwiper.autoplay.start()));
+        }
       }
       if (window.scriptsLoaded) {
         initSwiper();

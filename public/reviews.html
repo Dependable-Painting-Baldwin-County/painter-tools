@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Reviews | Dependable Painting</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Read verified 5-star customer reviews for Dependable Painting: interior, exterior, cabinets & commercial projects in Baldwin & Mobile County, AL." />
+  <link rel="canonical" href="https://dependablepainting.work/reviews.html" />
+  <link rel="icon" type="image/png" href="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/reviews-data.js" defer></script>
+  <script id="schema-reviews" type="application/ld+json"></script>
+  <style>
+    main { max-width:1100px; margin:0 auto; padding:4rem 1.5rem 5rem; }
+    h1 { font-size:2.4rem; color:var(--brand-color); margin-bottom:1rem; }
+    .reviews-grid { display:grid; gap:1.3rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .rev-card { background:#121212; border-radius:14px; padding:1.1rem 1rem 1rem; box-shadow:0 6px 18px rgba(0,0,0,.55),0 0 0 1px rgba(255,59,59,.18); display:flex; flex-direction:column; gap:.6rem; position:relative; }
+    .rev-card .stars { color:var(--brand-color); font-size:.75rem; letter-spacing:2px; }
+    .rev-card p { margin:0; font-size:.9rem; line-height:1.45; color:#ddd; font-style:italic; }
+    .rev-card .author { font-size:.65rem; letter-spacing:.6px; color:var(--brand-color); text-transform:uppercase; font-weight:600; margin-top:auto; }
+    .summary { color:var(--text-muted); margin-bottom:2rem; max-width:720px; }
+    .back-link { display:inline-block; margin-top:2.5rem; color:var(--brand-color); text-decoration:none; font-weight:600; }
+    .back-link:hover { color:#fff; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><a href="/"><img src="https://imagedelivery.net/VwxTcpKX2CusqbCCDB94Nw/7c414308-e0a9-4da3-dd68-f9c4a6ed9800/icon512" alt="Dependable Painting Logo" /></a><span>Dependable Painting</span></div>
+    <nav class="primary-nav" aria-label="Main navigation">
+      <a href="/services.html">Services</a>
+      <a href="/interior-painting.html">Interior</a>
+      <a href="/exterior-painting.html">Exterior</a>
+      <a href="/cabinet-painting.html">Cabinets</a>
+      <a href="/contact-form.html">Contact</a>
+      <a href="tel:+12514235855" aria-label="Call us">Call</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Customer Reviews</h1>
+    <p class="summary">Real homeowner feedback from projects across Baldwin & Mobile County. Quality, communication and reliability are what our customers mention most. Every review below is a genuine 5‑star experience.</p>
+    <div class="reviews-grid" id="reviewsGrid" aria-live="polite"></div>
+    <a class="back-link" href="/">← Back to Home</a>
+  </main>
+  <footer class="site-footer">© <span id="year"></span> Dependable Painting • <a href="tel:+12514235855">(251) 423-5855</a></footer>
+  <script>
+    (function(){
+      function render(){
+        if(!window.REVIEWS) { return setTimeout(render,100); }
+        const grid=document.getElementById('reviewsGrid');
+        grid.innerHTML='';
+        window.REVIEWS.forEach(r=>{
+          const card=document.createElement('article');
+          card.className='rev-card';
+          card.innerHTML=`<div class="stars" aria-hidden="true">★★★★★</div><p>"${r.body.replace(/"/g,'&quot;')}"</p><div class="author">- ${r.author}</div>`;
+          grid.appendChild(card);
+        });
+        // Schema graph
+        const orgId='https://dependablepainting.work/#organization';
+        const graph=[{ '@context':'https://schema.org','@type':'Organization','@id':orgId,'name':'Dependable Painting','url':'https://dependablepainting.work/','aggregateRating':{'@type':'AggregateRating','ratingValue':'5','bestRating':'5','worstRating':'5','ratingCount':String(window.REVIEWS.length)} }];
+        window.REVIEWS.forEach(r=>graph.push({'@type':'Review','reviewBody':r.body,'author':{'@type':'Person','name':r.author},'reviewRating':{'@type':'Rating','ratingValue':'5','bestRating':'5','worstRating':'5'},'itemReviewed':{'@id':orgId}}));
+        const tag=document.getElementById('schema-reviews');
+        if(tag) tag.textContent=JSON.stringify({'@context':'https://schema.org','@graph':graph});
+      }
+      render();
+      document.getElementById('year').textContent=new Date().getFullYear();
+    })();
+  </script>
+  <script src="/chat-widget.js" defer></script>
+</body>
+</html>
