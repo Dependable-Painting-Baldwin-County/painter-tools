@@ -1,9 +1,13 @@
 CREATE TABLE lead_events (
-  id INTEGER PRIMARY KEY,
-  ts TEXT NOT NULL,
-  day TEXT NOT NULL,
-  hour TEXT NOT NULL,
-  type TEXT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  lead_id TEXT,
+  event_type TEXT NOT NULL,
+  event_data TEXT,
+  created_at TEXT NOT NULL,
+  ts TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  day TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d','now')),
+  hour TEXT NOT NULL DEFAULT (strftime('%H','now')),
+  type TEXT,
   page TEXT,
   service TEXT,
   source TEXT,
@@ -23,15 +27,17 @@ CREATE TABLE lead_events (
 );
 
 CREATE TABLE leads (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  email TEXT,
-  phone TEXT,
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  address TEXT,
   city TEXT,
   zip TEXT,
   service TEXT,
   page TEXT,
   session TEXT,
-  source TEXT,
-  message TEXT
+  source TEXT DEFAULT 'website',
+  message TEXT,
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
 );

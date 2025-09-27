@@ -1,6 +1,6 @@
 {
 	"name": "painter-tools",
-	"main": "src/index.ts",
+	"main": "src/index.js",
 	"compatibility_date": "2025-08-29",
 	"placement": { "mode": "smart" },
 	"workers_dev": true, // allow preview/remote dev even with custom domain route
@@ -9,7 +9,8 @@
 	"routes": [ { "pattern": "dependablepainting.work", "custom_domain": true } ],
 	"observability": { "enabled": true },
 	"d1_databases": [
-		{ "binding": "DB", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "preview_database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "database_name": "prod-d1-painter-data" }
+		{ "binding": "DB", "database_name": "painter-tools-db", "database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76", "preview_database_id": "23d74290-3df2-4fd0-b32e-a2eeb2ad9f76" },
+		{ "binding": "DB_2", "database_name": "painter-tools-db-2", "database_id": "419dd6ec-30a5-4b12-a895-65ab985aaf2f" }
 	],
 	"analytics_engine_datasets": [
 		{ "binding": "ANALYTICS_EVENTS", "dataset": "analytics_events" }
